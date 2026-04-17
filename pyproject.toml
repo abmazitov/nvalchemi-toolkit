@@ -70,6 +70,9 @@ mace = [
     "cuequivariance-torch>=0.8.0",
     "mace-torch==0.3.15",
 ]
+pet = [
+    "metatrain>=2025.10",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["nvalchemi"]
@@ -163,6 +166,13 @@ addopts = ["-vv", "-r", "xfXs"]
 markers = [
     "slow: marks tests as slow (deselect with: -m 'not slow')",
     "cli: marks tests which run CLIs"
+]
+# metatensor.torch decorates dozens of ops with @torch.jit.script at import
+# time, producing hundreds of duplicate DeprecationWarnings. Suppress them
+# here so test output stays readable; the issue is upstream.
+filterwarnings = [
+    "ignore:`torch.jit.script` is deprecated.*:DeprecationWarning",
+    "ignore:`torch.jit.script_method` is deprecated.*:DeprecationWarning",
 ]
 asyncio_mode = "auto"
 
