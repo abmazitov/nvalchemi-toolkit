@@ -56,6 +56,21 @@ Notes
 
 from __future__ import annotations
 
+import sys
+import types
+
+# metatrain.pet.__init__ imports metatrain.pet.trainer, which imports
+# metatrain.utils.distributed.slurm, which pulls in `hostlist`. That package
+# is a SLURM-only helper that the nvalchemi dev environment explicitly
+# disables via the `override-dependencies` block in `pyproject.toml`. When
+# it isn't present, stub a minimal module so the import chain resolves and
+# the tests can still exercise PET's pure-torch code paths.
+if "hostlist" not in sys.modules:
+    try:
+        import hostlist  # noqa: F401
+    except ImportError:
+        sys.modules["hostlist"] = types.ModuleType("hostlist")
+
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -1008,6 +1023,8 @@ class PETWrapper(nn.Module, BaseModelMixin):
         checkpoint_path: Path | str,
         device: torch.device = torch.device("cpu"),
         dtype: torch.dtype | None = None,
+        compile_model: bool = False,
+        **compile_kwargs: Any,
     ) -> "PETWrapper":
         """Load a PET checkpoint from disk and return a wrapped instance.
 
@@ -1031,6 +1048,11 @@ class PETWrapper(nn.Module, BaseModelMixin):
         dtype : torch.dtype | None, optional
             If set, cast the core and composition/scaler buffers to this
             dtype before returning.
+        compile_model : bool, optional
+            Apply ``torch.compile``.  Sets eval mode and freezes parameters;
+            the model is **inference-only** after this step.
+        **compile_kwargs
+            Forwarded to ``torch.compile``.
 
         Returns
         -------
@@ -1080,8 +1102,14 @@ class PETWrapper(nn.Module, BaseModelMixin):
             hypers=hypers,
             composition_energy=composition_energy,
             scale_energy=scale_energy,
-        )
-        return wrapper.to(device)
+        ).to(device)
+
+        if compile_model:
+            wrapper.eval()
+            for param in wrapper.parameters():
+                param.requires_grad = False
+            wrapper = torch.compile(wrapper, **compile_kwargs)
+        return wrapper
 
     # ------------------------------------------------------------------
     # Export

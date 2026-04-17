@@ -595,18 +595,17 @@ class TestFromCheckpointErrors:
 _CHECKPOINT_PATH = "pet-mad-xs-v1.5.0.ckpt"
 _CUTOFF = 7.5
 
-_POSITIONS = torch.tensor([[0.0, 0.0, 0.0], [0.5, 0.5, 0.5]], dtype=torch.float32)
-_ATOMIC_NUMBERS = torch.tensor([6, 1], dtype=torch.long)
-_CELL = torch.eye(3, dtype=torch.float32)
-_PBC = torch.tensor([True] * 3, dtype=torch.bool)
 
 def _crystal(device: str = "cpu") -> AtomicData:
     return AtomicData(
-        positions=_POSITIONS.to(device=device),
-        atomic_numbers=_ATOMIC_NUMBERS.to(device=device),
-        cell=_CELL.reshape(1, 3, 3).to(device=device),
-        pbc=_PBC.reshape(1, 3).to(device=device),
+        positions=torch.tensor(
+            [[0.0, 0.0, 0.0], [0.5, 0.5, 0.5]], dtype=torch.float32
+        ).to(device=device),
+        atomic_numbers=torch.tensor([6, 6], dtype=torch.long).to(device=device),
+        cell=torch.eye(3, dtype=torch.float32).reshape(1, 3, 3).to(device=device),
+        pbc=torch.tensor([True] * 3, dtype=torch.bool).reshape(1, 3).to(device=device),
     )
+
 
 def _batch(dtype: torch.dtype = torch.float32) -> Batch:
     data = _crystal()
@@ -695,7 +694,7 @@ class TestRealCheckpoint:
     def test_compute_embeddings_run(self, real_wrapper_cpu):
         batch = _batch()
         result = real_wrapper_cpu.compute_embeddings(batch)
-        assert result.node_embeddings.shape[0] == 3
+        assert result.node_embeddings.shape[0] == 2
         assert result.graph_embeddings.shape == (1, result.node_embeddings.shape[1])
 
     def test_export_and_reload(self, real_wrapper_cpu, tmp_path):
@@ -708,30 +707,43 @@ class TestRealCheckpoint:
     def test_metatrain_model_compatibility(self, real_wrapper_cpu):
         """Predictions from the PETWrapper match those from the original metatrain model."""
         ase = pytest.importorskip("ase")
-        pytest.importorskip("metatomic.torch.ase_calculator")
+        from metatomic.torch import NeighborListOptions, systems_to_torch
+        from metatrain.utils.data.target_info import get_energy_target_info
+        from metatrain.utils.evaluate_model import evaluate_model
         from metatrain.utils.io import load_model
         from metatrain.utils.neighbor_lists import get_system_with_neighbor_lists
-        from metatomic.torch import systems_to_torch, NeighborListOptions, ModelOutput
-        from metatrain.utils.evaluate_model import evaluate_model
-        from metatrain.utils.data.target_info import get_energy_target_info
-
 
         mt_model = load_model(_CHECKPOINT_PATH)
+        data = _crystal()
         atoms = ase.Atoms(
-            positions=_POSITIONS.numpy(),
-            numbers=_ATOMIC_NUMBERS.numpy(),
-            cell=_CELL.numpy(),
-            pbc=_PBC.numpy(),
+            positions=data.positions.cpu().numpy(),
+            numbers=data.atomic_numbers.cpu().numpy(),
+            cell=data.cell.cpu().squeeze().numpy() if data.cell is not None else None,
+            pbc=data.pbc.cpu().squeeze().numpy() if data.pbc is not None else None,
         )
         system = systems_to_torch(atoms)
-        neighbor_options = NeighborListOptions(cutoff=_CUTOFF, full_list=True, strict=True)
+        neighbor_options = NeighborListOptions(
+            cutoff=_CUTOFF, full_list=True, strict=True
+        )
         system = get_system_with_neighbor_lists(system, [neighbor_options])
-        targets = {"energy": get_energy_target_info("energy", {"unit": 'eV'}, add_position_gradients=True, add_strain_gradients=True)}
-        mt_output = evaluate_model(mt_model, [system], targets=targets, is_training=False)
+        targets = {
+            "energy": get_energy_target_info(
+                "energy",
+                {"unit": "eV"},
+                add_position_gradients=True,
+                add_strain_gradients=True,
+            )
+        }
+        mt_output = evaluate_model(
+            mt_model, [system], targets=targets, is_training=False
+        )
 
-        mt_energy = mt_output['energy'].block().values.detach().squeeze()
-        mt_forces = -mt_output['energy'].block().gradient('positions').values.squeeze()
-        mt_stress = -mt_output['energy'].block().gradient('strain').values.squeeze() / atoms.get_volume()
+        mt_energy = mt_output["energy"].block().values.detach().squeeze()
+        mt_forces = -mt_output["energy"].block().gradient("positions").values.squeeze()
+        mt_stress = (
+            -mt_output["energy"].block().gradient("strain").values.squeeze()
+            / atoms.get_volume()
+        )
 
         nv_output = real_wrapper_cpu.forward(_batch())
         nv_energy = nv_output["energy"].detach().squeeze().item()
