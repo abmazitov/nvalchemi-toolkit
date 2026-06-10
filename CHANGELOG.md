@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+### Core Data Layer
+
+- **User-specified transforms** — `Dataset` accepts a `transforms=` kwarg
+  (per-sample `(AtomicData, metadata) -> (AtomicData, metadata)`) and
+  `DataLoader` accepts a `batch_transforms=` kwarg (per-batch `Batch -> Batch`).
+  Both default to `None` (backward compatible). New `nvalchemi.data.transforms`
+  subpackage exposes a polymorphic `Compose` utility plus `SampleTransform`
+  and `BatchTransform` type aliases, re-exported from `nvalchemi.data`.
+  Per-sample transforms run after device transfer on both sync and prefetch
+  paths; per-batch transforms run on the consumer thread after `Batch.from_data_list`.
+  Transform failures are wrapped in `RuntimeError` with `transform[<i>]`
+  breadcrumb and `__cause__` preserved.
+
 ### Fixed
 
 - **MTK NPT barostat runaway** (#89, #90) — four bugs in
