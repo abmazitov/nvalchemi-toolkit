@@ -217,8 +217,7 @@ dependencies = [
     { name = "click" },
     { name = "h5py" },
     { name = "jinja2" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "nvalchemi-toolkit-ops" },
     { name = "pyyaml" },
     { name = "requests" },
@@ -414,8 +413,7 @@ version = "3.27.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "matplotlib" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "scipy" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/8e/a6/d38b39abd24110deb13bee0dc14404eca1f2113c01bc9bbf075dc3e1c2dd/ase-3.27.0.tar.gz", hash = "sha256:92ada752d6866a61d2d27e0e6a4fd5b8cd86f59ca79a58f1d2fe29d7099153dc", size = 2363050, upload-time = "2025-12-28T15:41:22.419Z" }
@@ -431,7 +429,7 @@ dependencies = [
     { name = "ase" },
     { name = "cryptography" },
     { name = "lmdb", version = "1.7.3", source = { registry = "https://pypi.org/simple" } },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "psycopg2-binary" },
     { name = "pymysql" },
 ]
@@ -638,8 +636,7 @@ name = "cftime"
 version = "1.6.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/65/dc/470ffebac2eb8c54151eb893055024fe81b1606e7c6ff8449a588e9cd17f/cftime-1.6.5.tar.gz", hash = "sha256:8225fed6b9b43fb87683ebab52130450fc1730011150d3092096a90e54d1e81e", size = 326605, upload-time = "2025-10-13T18:56:26.352Z" }
 wheels = [
@@ -791,8 +788,7 @@ name = "contourpy"
 version = "1.3.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/58/01/1253e6698a07380cd31a736d248a3f2a50a7c88779a1813da27503cadc2a/contourpy-1.3.3.tar.gz", hash = "sha256:083e12155b210502d0bca491432bb04d56dc3432f95a979b429f2848c3dbe880", size = 13466174, upload-time = "2025-07-26T12:03:12.549Z" }
 wheels = [
@@ -1070,8 +1066,7 @@ name = "cuda-core"
 version = "0.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "numpy" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/7a/69/8361fa2873fdc86d298a01f70ca3ea4a13f59711e75312dd0ce3d411c05f/cuda_core-0.6.0-cp311-cp311-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:70c3cd2ae0fa82cd6681be636051b247bcd4c4c3249c35bd982034cefb5adca3", size = 21597027, upload-time = "2026-02-23T18:59:24.216Z" },
@@ -1343,7 +1338,7 @@ dependencies = [
     { name = "libcudf-cu12" },
     { name = "numba", version = "0.61.2", source = { registry = "https://pypi.org/simple" } },
     { name = "numba-cuda", version = "0.22.2", source = { registry = "https://pypi.org/simple" }, extra = ["cu12"], marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "nvtx" },
     { name = "packaging" },
     { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" } },
@@ -1375,7 +1370,7 @@ dependencies = [
     { name = "libcudf-cu13" },
     { name = "numba", version = "0.64.0", source = { registry = "https://pypi.org/simple" } },
     { name = "numba-cuda", version = "0.28.2", source = { registry = "https://pypi.org/simple" }, extra = ["cu13"], marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "nvtx" },
     { name = "packaging" },
     { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" } },
@@ -1395,8 +1390,7 @@ version = "0.10.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "networkx" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-mace')" },
+    { name = "numpy" },
     { name = "opt-einsum" },
     { name = "scipy" },
     { name = "sympy" },
@@ -1495,7 +1489,7 @@ dependencies = [
     { name = "libcuml-cu12" },
     { name = "numba", version = "0.61.2", source = { registry = "https://pypi.org/simple" } },
     { name = "numba-cuda", version = "0.22.2", source = { registry = "https://pypi.org/simple" }, extra = ["cu12"], marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "packaging" },
     { name = "pylibraft-cu12" },
     { name = "rich" },
@@ -1526,7 +1520,7 @@ dependencies = [
     { name = "libcuml-cu13" },
     { name = "numba", version = "0.64.0", source = { registry = "https://pypi.org/simple" } },
     { name = "numba-cuda", version = "0.28.2", source = { registry = "https://pypi.org/simple" }, extra = ["cu13"], marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "nvidia-nvjitlink" },
     { name = "packaging" },
     { name = "pylibraft-cu13" },
@@ -1543,22 +1537,22 @@ wheels = [
 
 [[package]]
 name = "cupy-cuda12x"
-version = "14.0.1"
+version = "13.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cuda-pathfinder" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" } },
+    { name = "fastrlock" },
+    { name = "numpy" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d9/11/6d089629f44591864bc8a11fa64c9d4fcd1afb4a7217954c806fb47c4fe5/cupy_cuda12x-14.0.1-cp311-cp311-manylinux2014_aarch64.whl", hash = "sha256:31e6a33579a06fde3ff238b8b6b72446384d17554b2a3b14f818c9ee44b0c2e6", size = 146237981, upload-time = "2026-02-20T10:22:29.065Z" },
-    { url = "https://files.pythonhosted.org/packages/37/f0/0f1d79c0c7fccbc2ed0c0ff3be1b0562be60b764c729ca8ded1bd6d953aa/cupy_cuda12x-14.0.1-cp311-cp311-manylinux2014_x86_64.whl", hash = "sha256:bfbde2e9f7946021b49414f9c800991163f2a56a1318f3d7d69cbb06001a1585", size = 135080693, upload-time = "2026-02-20T10:22:35.843Z" },
-    { url = "https://files.pythonhosted.org/packages/6d/1b/b3a26fd36e066e9bc25d875488468c9a40e8c7a90acadfacc524a17da457/cupy_cuda12x-14.0.1-cp311-cp311-win_amd64.whl", hash = "sha256:c289e78876c6840b3c512868b8c5d43ac76bc3c581eab1a75c4f2f4a88d5b430", size = 96361678, upload-time = "2026-02-20T10:22:41.718Z" },
-    { url = "https://files.pythonhosted.org/packages/38/ca/b93ef9fca1471a65f136a73e10819634c0b83427362fc08fc9f29f935bf0/cupy_cuda12x-14.0.1-cp312-cp312-manylinux2014_aarch64.whl", hash = "sha256:f244bc14fad6f1ef0c74abd98afa4b82d2534aecdba911197810ec0047f0d1f3", size = 145578614, upload-time = "2026-02-20T10:22:49.108Z" },
-    { url = "https://files.pythonhosted.org/packages/5a/a6/944406223a190815d9df156a1d66f3b0352bd8827dc4a8c752196d616dbc/cupy_cuda12x-14.0.1-cp312-cp312-manylinux2014_x86_64.whl", hash = "sha256:9f0c81c3509f77be3ae8444759d5b314201b2dfcbbf2ae0d0b5fb7a61f20893c", size = 134613763, upload-time = "2026-02-20T10:22:56.792Z" },
-    { url = "https://files.pythonhosted.org/packages/11/fd/62e6e3f3c0c9f785b2dbdc2bff01bc375f5c6669d52e5e151f7aeb577801/cupy_cuda12x-14.0.1-cp312-cp312-win_amd64.whl", hash = "sha256:63dc8a3a88d2ffd0386796b915d27acc7f2332c2291efd1ff4f0021b96f02051", size = 96267167, upload-time = "2026-02-20T10:23:02.263Z" },
-    { url = "https://files.pythonhosted.org/packages/99/67/f967c5aff77bd6ae6765faf20580db80bb8a7e2574e999166de1d4e50146/cupy_cuda12x-14.0.1-cp313-cp313-manylinux2014_aarch64.whl", hash = "sha256:9d9b1bdcf9fa777593017867e8733192c071b94639a1b3e8b2ee99eb3f3ea760", size = 145128055, upload-time = "2026-02-20T10:23:08.765Z" },
-    { url = "https://files.pythonhosted.org/packages/80/53/037c931731151c504cfc00069eb295c903927c92145115623f13bd2ea076/cupy_cuda12x-14.0.1-cp313-cp313-manylinux2014_x86_64.whl", hash = "sha256:21fcb4e917e43237edcc5e3a1a1241e2a2946ba9e577ce36fd580bd9856f91e8", size = 134227269, upload-time = "2026-02-20T10:23:16.147Z" },
-    { url = "https://files.pythonhosted.org/packages/a3/70/ce8344426effda22152bf30cfb8f9b6477645d0f41df784674369af8f422/cupy_cuda12x-14.0.1-cp313-cp313-win_amd64.whl", hash = "sha256:b7399e7fe4e2be3b5c3974fc892a661e10082836a4c78d0152b39cb483608a89", size = 96250134, upload-time = "2026-02-20T10:23:22.631Z" },
+    { url = "https://files.pythonhosted.org/packages/54/64/71c6e08f76c06639e5112f69ee3bc1129be00054ad5f906d7fd3138af579/cupy_cuda12x-13.6.0-cp311-cp311-manylinux2014_aarch64.whl", hash = "sha256:c790d012fd4d86872b9c89af9f5f15d91c30b8e3a4aa4dd04c2610f45f06ac44", size = 128016458, upload-time = "2025-08-18T08:24:26.394Z" },
+    { url = "https://files.pythonhosted.org/packages/fc/d9/5c5077243cd92368c3eccecdbf91d76db15db338169042ffd1647533c6b1/cupy_cuda12x-13.6.0-cp311-cp311-manylinux2014_x86_64.whl", hash = "sha256:77ba6745a130d880c962e687e4e146ebbb9014f290b0a80dbc4e4634eb5c3b48", size = 113039337, upload-time = "2025-08-18T08:24:31.814Z" },
+    { url = "https://files.pythonhosted.org/packages/88/f5/02bea5cdf108e2a66f98e7d107b4c9a6709e5dbfedf663340e5c11719d83/cupy_cuda12x-13.6.0-cp311-cp311-win_amd64.whl", hash = "sha256:a20b7acdc583643a623c8d8e3efbe0db616fbcf5916e9c99eedf73859b6133af", size = 89885526, upload-time = "2025-08-18T08:24:37.258Z" },
+    { url = "https://files.pythonhosted.org/packages/12/c5/7e7fc4816d0de0154e5d9053242c3a08a0ca8b43ee656a6f7b3b95055a7b/cupy_cuda12x-13.6.0-cp312-cp312-manylinux2014_aarch64.whl", hash = "sha256:a6970ceefe40f9acbede41d7fe17416bd277b1bd2093adcde457b23b578c5a59", size = 127334633, upload-time = "2025-08-18T08:24:43.065Z" },
+    { url = "https://files.pythonhosted.org/packages/e0/95/d7e1295141e7d530674a3cc567e13ed0eb6b81524cb122d797ed996b5bea/cupy_cuda12x-13.6.0-cp312-cp312-manylinux2014_x86_64.whl", hash = "sha256:79b0cacb5e8b190ef409f9e03f06ac8de1b021b0c0dda47674d446f5557e0eb1", size = 112886268, upload-time = "2025-08-18T08:24:49.294Z" },
+    { url = "https://files.pythonhosted.org/packages/ae/8c/14555b63fd78cfac7b88af0094cea0a3cb845d243661ec7da69f7b3ea0de/cupy_cuda12x-13.6.0-cp312-cp312-win_amd64.whl", hash = "sha256:ca06fede7b8b83ca9ad80062544ef2e5bb8d4762d1c4fc3ac8349376de9c8a5e", size = 89785108, upload-time = "2025-08-18T08:24:54.527Z" },
+    { url = "https://files.pythonhosted.org/packages/19/ec/f62cb991f11fb41291c4c15b6936d7b67ffa71ddb344ad6e8894e06ce58d/cupy_cuda12x-13.6.0-cp313-cp313-manylinux2014_aarch64.whl", hash = "sha256:e5426ae3b1b9cf59927481e457a89e3f0b50a35b114a8034ec9110e7a833434c", size = 126904601, upload-time = "2025-08-18T08:24:59.951Z" },
+    { url = "https://files.pythonhosted.org/packages/f8/b8/30127bcdac53a25f94ee201bf4802fcd8d012145567d77c54174d6d01c01/cupy_cuda12x-13.6.0-cp313-cp313-manylinux2014_x86_64.whl", hash = "sha256:52d9e7f83d920da7d81ec2e791c2c2c747fdaa1d7b811971b34865ce6371e98a", size = 112654824, upload-time = "2025-08-18T08:25:05.944Z" },
+    { url = "https://files.pythonhosted.org/packages/72/36/c9e24acb19f039f814faea880b3704a3661edaa6739456b73b27540663e3/cupy_cuda12x-13.6.0-cp313-cp313-win_amd64.whl", hash = "sha256:297b4268f839de67ef7865c2202d3f5a0fb8d20bd43360bc51b6e60cb4406447", size = 89750580, upload-time = "2025-08-18T08:25:10.972Z" },
 ]
 
 [[package]]
@@ -1567,7 +1561,7 @@ version = "13.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fastrlock" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2e/b4/5c0895ebcb2ea73fd3e783c5ed605fb930b08edc91f823b3f05400995579/cupy_cuda13x-13.6.0-cp311-cp311-manylinux2014_aarch64.whl", hash = "sha256:81948cb0d21da5f0a56aef75bb6b0801486f5898276de2e53d171949422b7c4e", size = 67022616, upload-time = "2025-08-18T08:32:20.301Z" },
@@ -1606,8 +1600,7 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "absl-py" },
     { name = "attrs" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "wrapt" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a6/83/ce29720ccf934c6cfa9b9c95ebbe96558386e66886626066632b5e44afed/dm_tree-0.1.9.tar.gz", hash = "sha256:a4c7db3d3935a5a2d5e4b383fc26c6b0cd6f78c6d4605d3e7b518800ecd5342b", size = 35623, upload-time = "2025-01-30T20:45:37.13Z" }
@@ -1799,7 +1792,7 @@ dependencies = [
     { name = "lmdb", version = "1.7.3", source = { registry = "https://pypi.org/simple" } },
     { name = "monty" },
     { name = "numba", version = "0.64.0", source = { registry = "https://pypi.org/simple" } },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "orjson" },
     { name = "pyyaml" },
     { name = "ray", extra = ["serve"], marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
@@ -2018,14 +2011,14 @@ wheels = [
 
 [[package]]
 name = "gitpython"
-version = "3.1.46"
+version = "3.1.50"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "gitdb" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/df/b5/59d16470a1f0dfe8c793f9ef56fd3826093fc52b3bd96d6b9d6c26c7e27b/gitpython-3.1.46.tar.gz", hash = "sha256:400124c7d0ef4ea03f7310ac2fbf7151e09ff97f2a3288d64a440c584a29c37f", size = 215371, upload-time = "2026-01-01T15:37:32.073Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/33/f6/354ae6491228b5eb40e10d89c4d13c651fe1cf7556e35ebdded50cff57ce/gitpython-3.1.50.tar.gz", hash = "sha256:80da2d12504d52e1f998772dc5baf6e553f8d2fcfe1fcc226c9d9a2ee3372dcc", size = 219798, upload-time = "2026-05-06T04:01:26.571Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6a/09/e21df6aef1e1ffc0c816f0522ddc3f6dcded766c3261813131c78a704470/gitpython-3.1.46-py3-none-any.whl", hash = "sha256:79812ed143d9d25b6d176a10bb511de0f9c67b1fa641d82097b0ab90398a2058", size = 208620, upload-time = "2026-01-01T15:37:30.574Z" },
+    { url = "https://files.pythonhosted.org/packages/20/7a/1c6e3562dfd8950adbb11ffbc65d21e7c89d01a6e4f137fa981056de25c5/gitpython-3.1.50-py3-none-any.whl", hash = "sha256:d352abe2908d07355014abdd21ddf798c2a961469239afec4962e9da884858f9", size = 212507, upload-time = "2026-05-06T04:01:23.799Z" },
 ]
 
 [[package]]
@@ -2149,8 +2142,7 @@ name = "h5py"
 version = "3.15.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/4d/6a/0d79de0b025aa85dc8864de8e97659c94cf3d23148394a954dc5ca52f8c8/h5py-3.15.1.tar.gz", hash = "sha256:c86e3ed45c4473564de55aa83b6fc9e5ead86578773dfbd93047380042e26b69", size = 426236, upload-time = "2025-10-16T10:35:27.404Z" }
 wheels = [
@@ -3045,8 +3037,7 @@ dependencies = [
     { name = "lmdb", version = "1.7.5", source = { registry = "https://pypi.org/simple" } },
     { name = "matplotlib" },
     { name = "matscipy" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-mace')" },
+    { name = "numpy" },
     { name = "opt-einsum" },
     { name = "orjson" },
     { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
@@ -3157,8 +3148,7 @@ dependencies = [
     { name = "cycler" },
     { name = "fonttools" },
     { name = "kiwisolver" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "packaging" },
     { name = "pillow" },
     { name = "pyparsing" },
@@ -3205,8 +3195,7 @@ version = "1.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ase" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-mace')" },
+    { name = "numpy" },
     { name = "packaging" },
     { name = "scipy" },
 ]
@@ -3258,8 +3247,7 @@ name = "ml-dtypes"
 version = "0.5.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/0e/4a/c27b42ed9b1c7d13d9ba8b6905dece787d6259152f2309338aed29b2447b/ml_dtypes-0.5.4.tar.gz", hash = "sha256:8ab06a50fb9bf9666dd0fe5dfb4676fa2b0ac0f31ecff72a6c3af8e22c063453", size = 692314, upload-time = "2025-11-17T22:32:31.031Z" }
 wheels = [
@@ -3290,8 +3278,7 @@ name = "monty"
 version = "2026.2.18"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "ruamel-yaml" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/82/e2/e8ada0dbe679e4af4587e1d29b46e6c1febf2e861cb71ba09b2a6b3aed1a/monty-2026.2.18.tar.gz", hash = "sha256:e34e77abe7454ab84a9eeab7d909dbb500e3fa114c1849352ecd4570feb72be0", size = 191585, upload-time = "2026-02-18T01:19:02.858Z" }
@@ -3602,7 +3589,7 @@ resolution-markers = [
 ]
 dependencies = [
     { name = "llvmlite", version = "0.44.0", source = { registry = "https://pypi.org/simple" } },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/1c/a0/e21f57604304aa03ebb8e098429222722ad99176a4f979d34af1d1ee80da/numba-0.61.2.tar.gz", hash = "sha256:8750ee147940a6637b80ecf7f95062185ad8726c8c28a2295b8ec1160a196f7d", size = 2820615, upload-time = "2025-04-09T02:58:07.659Z" }
 wheels = [
@@ -3649,7 +3636,7 @@ resolution-markers = [
 ]
 dependencies = [
     { name = "llvmlite", version = "0.46.0", source = { registry = "https://pypi.org/simple" } },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/23/c9/a0fb41787d01d621046138da30f6c2100d80857bf34b3390dd68040f27a3/numba-0.64.0.tar.gz", hash = "sha256:95e7300af648baa3308127b1955b52ce6d11889d16e8cfe637b4f85d2fca52b1", size = 2765679, upload-time = "2026-02-18T18:41:20.974Z" }
 wheels = [
@@ -3795,8 +3782,7 @@ name = "numcodecs"
 version = "0.16.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "typing-extensions" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/44/bd/8a391e7c356366224734efd24da929cc4796fff468bfb179fe1af6548535/numcodecs-0.16.5.tar.gz", hash = "sha256:0d0fb60852f84c0bd9543cc4d2ab9eefd37fc8efcc410acd4777e62a1d300318", size = 6276387, upload-time = "2025-11-21T02:49:48.986Z" }
@@ -3822,44 +3808,6 @@ wheels = [
 name = "numpy"
 version = "2.2.6"
 source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version >= '3.13' and platform_machine == 'aarch64' and sys_platform == 'win32'",
-    "python_full_version >= '3.13' and platform_machine == 'x86_64' and sys_platform == 'win32'",
-    "python_full_version >= '3.13' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'win32'",
-    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'win32'",
-    "python_full_version >= '3.13' and platform_machine == 'aarch64' and sys_platform == 'emscripten'",
-    "python_full_version >= '3.13' and platform_machine == 'x86_64' and sys_platform == 'emscripten'",
-    "python_full_version >= '3.13' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'emscripten'",
-    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'emscripten'",
-    "python_full_version >= '3.13' and platform_machine == 'aarch64' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version >= '3.13' and platform_machine == 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version >= '3.13' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version == '3.12.*' and platform_machine == 'aarch64' and sys_platform == 'win32'",
-    "python_full_version == '3.12.*' and platform_machine == 'x86_64' and sys_platform == 'win32'",
-    "python_full_version == '3.12.*' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'win32'",
-    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'win32'",
-    "python_full_version == '3.12.*' and platform_machine == 'aarch64' and sys_platform == 'emscripten'",
-    "python_full_version == '3.12.*' and platform_machine == 'x86_64' and sys_platform == 'emscripten'",
-    "python_full_version == '3.12.*' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'emscripten'",
-    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'emscripten'",
-    "python_full_version == '3.12.*' and platform_machine == 'aarch64' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version == '3.12.*' and platform_machine == 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version == '3.12.*' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version < '3.12' and platform_machine == 'aarch64' and sys_platform == 'win32'",
-    "python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'win32'",
-    "python_full_version < '3.12' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'win32'",
-    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'win32'",
-    "python_full_version < '3.12' and platform_machine == 'aarch64' and sys_platform == 'emscripten'",
-    "python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'emscripten'",
-    "python_full_version < '3.12' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'emscripten'",
-    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'emscripten'",
-    "python_full_version < '3.12' and platform_machine == 'aarch64' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version < '3.12' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-]
 sdist = { url = "https://files.pythonhosted.org/packages/76/21/7d2a95e4bba9dc13d043ee156a356c0a8f0c6309dff6b21b4d71a073b8a8/numpy-2.2.6.tar.gz", hash = "sha256:e29554e2bef54a90aa5cc07da6ce955accb83f21ab5de01a62c8478897b264fd", size = 20276440, upload-time = "2025-05-17T22:38:04.611Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/da/a8/4f83e2aa666a9fbf56d6118faaaf5f1974d456b1823fda0a176eff722839/numpy-2.2.6-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:f9f1adb22318e121c5c69a09142811a201ef17ab257a1e66ca3025065b7f53ae", size = 21176963, upload-time = "2025-05-17T21:31:19.36Z" },
@@ -3905,95 +3853,19 @@ wheels = [
 ]
 
 [[package]]
-name = "numpy"
-version = "2.4.2"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'win32'",
-    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'win32'",
-    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'emscripten'",
-    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'emscripten'",
-    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'win32'",
-    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'win32'",
-    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'emscripten'",
-    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'emscripten'",
-    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'win32'",
-    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'win32'",
-    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'emscripten'",
-    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'emscripten'",
-    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
-]
-sdist = { url = "https://files.pythonhosted.org/packages/57/fd/0005efbd0af48e55eb3c7208af93f2862d4b1a56cd78e84309a2d959208d/numpy-2.4.2.tar.gz", hash = "sha256:659a6107e31a83c4e33f763942275fd278b21d095094044eb35569e86a21ddae", size = 20723651, upload-time = "2026-01-31T23:13:10.135Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/d3/44/71852273146957899753e69986246d6a176061ea183407e95418c2aa4d9a/numpy-2.4.2-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:e7e88598032542bd49af7c4747541422884219056c268823ef6e5e89851c8825", size = 16955478, upload-time = "2026-01-31T23:10:25.623Z" },
-    { url = "https://files.pythonhosted.org/packages/74/41/5d17d4058bd0cd96bcbd4d9ff0fb2e21f52702aab9a72e4a594efa18692f/numpy-2.4.2-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:7edc794af8b36ca37ef5fcb5e0d128c7e0595c7b96a2318d1badb6fcd8ee86b1", size = 14965467, upload-time = "2026-01-31T23:10:28.186Z" },
-    { url = "https://files.pythonhosted.org/packages/49/48/fb1ce8136c19452ed15f033f8aee91d5defe515094e330ce368a0647846f/numpy-2.4.2-cp311-cp311-macosx_14_0_arm64.whl", hash = "sha256:6e9f61981ace1360e42737e2bae58b27bf28a1b27e781721047d84bd754d32e7", size = 5475172, upload-time = "2026-01-31T23:10:30.848Z" },
-    { url = "https://files.pythonhosted.org/packages/40/a9/3feb49f17bbd1300dd2570432961f5c8a4ffeff1db6f02c7273bd020a4c9/numpy-2.4.2-cp311-cp311-macosx_14_0_x86_64.whl", hash = "sha256:cb7bbb88aa74908950d979eeaa24dbdf1a865e3c7e45ff0121d8f70387b55f73", size = 6805145, upload-time = "2026-01-31T23:10:32.352Z" },
-    { url = "https://files.pythonhosted.org/packages/3f/39/fdf35cbd6d6e2fcad42fcf85ac04a85a0d0fbfbf34b30721c98d602fd70a/numpy-2.4.2-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:4f069069931240b3fc703f1e23df63443dbd6390614c8c44a87d96cd0ec81eb1", size = 15966084, upload-time = "2026-01-31T23:10:34.502Z" },
-    { url = "https://files.pythonhosted.org/packages/1b/46/6fa4ea94f1ddf969b2ee941290cca6f1bfac92b53c76ae5f44afe17ceb69/numpy-2.4.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:c02ef4401a506fb60b411467ad501e1429a3487abca4664871d9ae0b46c8ba32", size = 16899477, upload-time = "2026-01-31T23:10:37.075Z" },
-    { url = "https://files.pythonhosted.org/packages/09/a1/2a424e162b1a14a5bd860a464ab4e07513916a64ab1683fae262f735ccd2/numpy-2.4.2-cp311-cp311-musllinux_1_2_aarch64.whl", hash = "sha256:2653de5c24910e49c2b106499803124dde62a5a1fe0eedeaecf4309a5f639390", size = 17323429, upload-time = "2026-01-31T23:10:39.704Z" },
-    { url = "https://files.pythonhosted.org/packages/ce/a2/73014149ff250628df72c58204822ac01d768697913881aacf839ff78680/numpy-2.4.2-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:1ae241bbfc6ae276f94a170b14785e561cb5e7f626b6688cf076af4110887413", size = 18635109, upload-time = "2026-01-31T23:10:41.924Z" },
-    { url = "https://files.pythonhosted.org/packages/6c/0c/73e8be2f1accd56df74abc1c5e18527822067dced5ec0861b5bb882c2ce0/numpy-2.4.2-cp311-cp311-win32.whl", hash = "sha256:df1b10187212b198dd45fa943d8985a3c8cf854aed4923796e0e019e113a1bda", size = 6237915, upload-time = "2026-01-31T23:10:45.26Z" },
-    { url = "https://files.pythonhosted.org/packages/76/ae/e0265e0163cf127c24c3969d29f1c4c64551a1e375d95a13d32eab25d364/numpy-2.4.2-cp311-cp311-win_amd64.whl", hash = "sha256:b9c618d56a29c9cb1c4da979e9899be7578d2e0b3c24d52079c166324c9e8695", size = 12607972, upload-time = "2026-01-31T23:10:47.021Z" },
-    { url = "https://files.pythonhosted.org/packages/29/a5/c43029af9b8014d6ea157f192652c50042e8911f4300f8f6ed3336bf437f/numpy-2.4.2-cp311-cp311-win_arm64.whl", hash = "sha256:47c5a6ed21d9452b10227e5e8a0e1c22979811cad7dcc19d8e3e2fb8fa03f1a3", size = 10485763, upload-time = "2026-01-31T23:10:50.087Z" },
-    { url = "https://files.pythonhosted.org/packages/51/6e/6f394c9c77668153e14d4da83bcc247beb5952f6ead7699a1a2992613bea/numpy-2.4.2-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:21982668592194c609de53ba4933a7471880ccbaadcc52352694a59ecc860b3a", size = 16667963, upload-time = "2026-01-31T23:10:52.147Z" },
-    { url = "https://files.pythonhosted.org/packages/1f/f8/55483431f2b2fd015ae6ed4fe62288823ce908437ed49db5a03d15151678/numpy-2.4.2-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:40397bda92382fcec844066efb11f13e1c9a3e2a8e8f318fb72ed8b6db9f60f1", size = 14693571, upload-time = "2026-01-31T23:10:54.789Z" },
-    { url = "https://files.pythonhosted.org/packages/2f/20/18026832b1845cdc82248208dd929ca14c9d8f2bac391f67440707fff27c/numpy-2.4.2-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:b3a24467af63c67829bfaa61eecf18d5432d4f11992688537be59ecd6ad32f5e", size = 5203469, upload-time = "2026-01-31T23:10:57.343Z" },
-    { url = "https://files.pythonhosted.org/packages/7d/33/2eb97c8a77daaba34eaa3fa7241a14ac5f51c46a6bd5911361b644c4a1e2/numpy-2.4.2-cp312-cp312-macosx_14_0_x86_64.whl", hash = "sha256:805cc8de9fd6e7a22da5aed858e0ab16be5a4db6c873dde1d7451c541553aa27", size = 6550820, upload-time = "2026-01-31T23:10:59.429Z" },
-    { url = "https://files.pythonhosted.org/packages/b1/91/b97fdfd12dc75b02c44e26c6638241cc004d4079a0321a69c62f51470c4c/numpy-2.4.2-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:6d82351358ffbcdcd7b686b90742a9b86632d6c1c051016484fa0b326a0a1548", size = 15663067, upload-time = "2026-01-31T23:11:01.291Z" },
-    { url = "https://files.pythonhosted.org/packages/f5/c6/a18e59f3f0b8071cc85cbc8d80cd02d68aa9710170b2553a117203d46936/numpy-2.4.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:9e35d3e0144137d9fdae62912e869136164534d64a169f86438bc9561b6ad49f", size = 16619782, upload-time = "2026-01-31T23:11:03.669Z" },
-    { url = "https://files.pythonhosted.org/packages/b7/83/9751502164601a79e18847309f5ceec0b1446d7b6aa12305759b72cf98b2/numpy-2.4.2-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:adb6ed2ad29b9e15321d167d152ee909ec73395901b70936f029c3bc6d7f4460", size = 17013128, upload-time = "2026-01-31T23:11:05.913Z" },
-    { url = "https://files.pythonhosted.org/packages/61/c4/c4066322256ec740acc1c8923a10047818691d2f8aec254798f3dd90f5f2/numpy-2.4.2-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:8906e71fd8afcb76580404e2a950caef2685df3d2a57fe82a86ac8d33cc007ba", size = 18345324, upload-time = "2026-01-31T23:11:08.248Z" },
-    { url = "https://files.pythonhosted.org/packages/ab/af/6157aa6da728fa4525a755bfad486ae7e3f76d4c1864138003eb84328497/numpy-2.4.2-cp312-cp312-win32.whl", hash = "sha256:ec055f6dae239a6299cace477b479cca2fc125c5675482daf1dd886933a1076f", size = 5960282, upload-time = "2026-01-31T23:11:10.497Z" },
-    { url = "https://files.pythonhosted.org/packages/92/0f/7ceaaeaacb40567071e94dbf2c9480c0ae453d5bb4f52bea3892c39dc83c/numpy-2.4.2-cp312-cp312-win_amd64.whl", hash = "sha256:209fae046e62d0ce6435fcfe3b1a10537e858249b3d9b05829e2a05218296a85", size = 12314210, upload-time = "2026-01-31T23:11:12.176Z" },
-    { url = "https://files.pythonhosted.org/packages/2f/a3/56c5c604fae6dd40fa2ed3040d005fca97e91bd320d232ac9931d77ba13c/numpy-2.4.2-cp312-cp312-win_arm64.whl", hash = "sha256:fbde1b0c6e81d56f5dccd95dd4a711d9b95df1ae4009a60887e56b27e8d903fa", size = 10220171, upload-time = "2026-01-31T23:11:14.684Z" },
-    { url = "https://files.pythonhosted.org/packages/a1/22/815b9fe25d1d7ae7d492152adbc7226d3eff731dffc38fe970589fcaaa38/numpy-2.4.2-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:25f2059807faea4b077a2b6837391b5d830864b3543627f381821c646f31a63c", size = 16663696, upload-time = "2026-01-31T23:11:17.516Z" },
-    { url = "https://files.pythonhosted.org/packages/09/f0/817d03a03f93ba9c6c8993de509277d84e69f9453601915e4a69554102a1/numpy-2.4.2-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:bd3a7a9f5847d2fb8c2c6d1c862fa109c31a9abeca1a3c2bd5a64572955b2979", size = 14688322, upload-time = "2026-01-31T23:11:19.883Z" },
-    { url = "https://files.pythonhosted.org/packages/da/b4/f805ab79293c728b9a99438775ce51885fd4f31b76178767cfc718701a39/numpy-2.4.2-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:8e4549f8a3c6d13d55041925e912bfd834285ef1dd64d6bc7d542583355e2e98", size = 5198157, upload-time = "2026-01-31T23:11:22.375Z" },
-    { url = "https://files.pythonhosted.org/packages/74/09/826e4289844eccdcd64aac27d13b0fd3f32039915dd5b9ba01baae1f436c/numpy-2.4.2-cp313-cp313-macosx_14_0_x86_64.whl", hash = "sha256:aea4f66ff44dfddf8c2cffd66ba6538c5ec67d389285292fe428cb2c738c8aef", size = 6546330, upload-time = "2026-01-31T23:11:23.958Z" },
-    { url = "https://files.pythonhosted.org/packages/19/fb/cbfdbfa3057a10aea5422c558ac57538e6acc87ec1669e666d32ac198da7/numpy-2.4.2-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:c3cd545784805de05aafe1dde61752ea49a359ccba9760c1e5d1c88a93bbf2b7", size = 15660968, upload-time = "2026-01-31T23:11:25.713Z" },
-    { url = "https://files.pythonhosted.org/packages/04/dc/46066ce18d01645541f0186877377b9371b8fa8017fa8262002b4ef22612/numpy-2.4.2-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:d0d9b7c93578baafcbc5f0b83eaf17b79d345c6f36917ba0c67f45226911d499", size = 16607311, upload-time = "2026-01-31T23:11:28.117Z" },
-    { url = "https://files.pythonhosted.org/packages/14/d9/4b5adfc39a43fa6bf918c6d544bc60c05236cc2f6339847fc5b35e6cb5b0/numpy-2.4.2-cp313-cp313-musllinux_1_2_aarch64.whl", hash = "sha256:f74f0f7779cc7ae07d1810aab8ac6b1464c3eafb9e283a40da7309d5e6e48fbb", size = 17012850, upload-time = "2026-01-31T23:11:30.888Z" },
-    { url = "https://files.pythonhosted.org/packages/b7/20/adb6e6adde6d0130046e6fdfb7675cc62bc2f6b7b02239a09eb58435753d/numpy-2.4.2-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:c7ac672d699bf36275c035e16b65539931347d68b70667d28984c9fb34e07fa7", size = 18334210, upload-time = "2026-01-31T23:11:33.214Z" },
-    { url = "https://files.pythonhosted.org/packages/78/0e/0a73b3dff26803a8c02baa76398015ea2a5434d9b8265a7898a6028c1591/numpy-2.4.2-cp313-cp313-win32.whl", hash = "sha256:8e9afaeb0beff068b4d9cd20d322ba0ee1cecfb0b08db145e4ab4dd44a6b5110", size = 5958199, upload-time = "2026-01-31T23:11:35.385Z" },
-    { url = "https://files.pythonhosted.org/packages/43/bc/6352f343522fcb2c04dbaf94cb30cca6fd32c1a750c06ad6231b4293708c/numpy-2.4.2-cp313-cp313-win_amd64.whl", hash = "sha256:7df2de1e4fba69a51c06c28f5a3de36731eb9639feb8e1cf7e4a7b0daf4cf622", size = 12310848, upload-time = "2026-01-31T23:11:38.001Z" },
-    { url = "https://files.pythonhosted.org/packages/6e/8d/6da186483e308da5da1cc6918ce913dcfe14ffde98e710bfeff2a6158d4e/numpy-2.4.2-cp313-cp313-win_arm64.whl", hash = "sha256:0fece1d1f0a89c16b03442eae5c56dc0be0c7883b5d388e0c03f53019a4bfd71", size = 10221082, upload-time = "2026-01-31T23:11:40.392Z" },
-    { url = "https://files.pythonhosted.org/packages/25/a1/9510aa43555b44781968935c7548a8926274f815de42ad3997e9e83680dd/numpy-2.4.2-cp313-cp313t-macosx_11_0_arm64.whl", hash = "sha256:5633c0da313330fd20c484c78cdd3f9b175b55e1a766c4a174230c6b70ad8262", size = 14815866, upload-time = "2026-01-31T23:11:42.495Z" },
-    { url = "https://files.pythonhosted.org/packages/36/30/6bbb5e76631a5ae46e7923dd16ca9d3f1c93cfa8d4ed79a129814a9d8db3/numpy-2.4.2-cp313-cp313t-macosx_14_0_arm64.whl", hash = "sha256:d9f64d786b3b1dd742c946c42d15b07497ed14af1a1f3ce840cce27daa0ce913", size = 5325631, upload-time = "2026-01-31T23:11:44.7Z" },
-    { url = "https://files.pythonhosted.org/packages/46/00/3a490938800c1923b567b3a15cd17896e68052e2145d8662aaf3e1ffc58f/numpy-2.4.2-cp313-cp313t-macosx_14_0_x86_64.whl", hash = "sha256:b21041e8cb6a1eb5312dd1d2f80a94d91efffb7a06b70597d44f1bd2dfc315ab", size = 6646254, upload-time = "2026-01-31T23:11:46.341Z" },
-    { url = "https://files.pythonhosted.org/packages/d3/e9/fac0890149898a9b609caa5af7455a948b544746e4b8fe7c212c8edd71f8/numpy-2.4.2-cp313-cp313t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:00ab83c56211a1d7c07c25e3217ea6695e50a3e2f255053686b081dc0b091a82", size = 15720138, upload-time = "2026-01-31T23:11:48.082Z" },
-    { url = "https://files.pythonhosted.org/packages/ea/5c/08887c54e68e1e28df53709f1893ce92932cc6f01f7c3d4dc952f61ffd4e/numpy-2.4.2-cp313-cp313t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:2fb882da679409066b4603579619341c6d6898fc83a8995199d5249f986e8e8f", size = 16655398, upload-time = "2026-01-31T23:11:50.293Z" },
-    { url = "https://files.pythonhosted.org/packages/4d/89/253db0fa0e66e9129c745e4ef25631dc37d5f1314dad2b53e907b8538e6d/numpy-2.4.2-cp313-cp313t-musllinux_1_2_aarch64.whl", hash = "sha256:66cb9422236317f9d44b67b4d18f44efe6e9c7f8794ac0462978513359461554", size = 17079064, upload-time = "2026-01-31T23:11:52.927Z" },
-    { url = "https://files.pythonhosted.org/packages/2a/d5/cbade46ce97c59c6c3da525e8d95b7abe8a42974a1dc5c1d489c10433e88/numpy-2.4.2-cp313-cp313t-musllinux_1_2_x86_64.whl", hash = "sha256:0f01dcf33e73d80bd8dc0f20a71303abbafa26a19e23f6b68d1aa9990af90257", size = 18379680, upload-time = "2026-01-31T23:11:55.22Z" },
-    { url = "https://files.pythonhosted.org/packages/40/62/48f99ae172a4b63d981babe683685030e8a3df4f246c893ea5c6ef99f018/numpy-2.4.2-cp313-cp313t-win32.whl", hash = "sha256:52b913ec40ff7ae845687b0b34d8d93b60cb66dcee06996dd5c99f2fc9328657", size = 6082433, upload-time = "2026-01-31T23:11:58.096Z" },
-    { url = "https://files.pythonhosted.org/packages/07/38/e054a61cfe48ad9f1ed0d188e78b7e26859d0b60ef21cd9de4897cdb5326/numpy-2.4.2-cp313-cp313t-win_amd64.whl", hash = "sha256:5eea80d908b2c1f91486eb95b3fb6fab187e569ec9752ab7d9333d2e66bf2d6b", size = 12451181, upload-time = "2026-01-31T23:11:59.782Z" },
-    { url = "https://files.pythonhosted.org/packages/6e/a4/a05c3a6418575e185dd84d0b9680b6bb2e2dc3e4202f036b7b4e22d6e9dc/numpy-2.4.2-cp313-cp313t-win_arm64.whl", hash = "sha256:fd49860271d52127d61197bb50b64f58454e9f578cb4b2c001a6de8b1f50b0b1", size = 10290756, upload-time = "2026-01-31T23:12:02.438Z" },
-    { url = "https://files.pythonhosted.org/packages/f4/f8/50e14d36d915ef64d8f8bc4a087fc8264d82c785eda6711f80ab7e620335/numpy-2.4.2-pp311-pypy311_pp73-macosx_10_15_x86_64.whl", hash = "sha256:89f7268c009bc492f506abd6f5265defa7cb3f7487dc21d357c3d290add45082", size = 16833179, upload-time = "2026-01-31T23:12:53.5Z" },
-    { url = "https://files.pythonhosted.org/packages/17/17/809b5cad63812058a8189e91a1e2d55a5a18fd04611dbad244e8aeae465c/numpy-2.4.2-pp311-pypy311_pp73-macosx_11_0_arm64.whl", hash = "sha256:e6dee3bb76aa4009d5a912180bf5b2de012532998d094acee25d9cb8dee3e44a", size = 14889755, upload-time = "2026-01-31T23:12:55.933Z" },
-    { url = "https://files.pythonhosted.org/packages/3e/ea/181b9bcf7627fc8371720316c24db888dcb9829b1c0270abf3d288b2e29b/numpy-2.4.2-pp311-pypy311_pp73-macosx_14_0_arm64.whl", hash = "sha256:cd2bd2bbed13e213d6b55dc1d035a4f91748a7d3edc9480c13898b0353708920", size = 5399500, upload-time = "2026-01-31T23:12:58.671Z" },
-    { url = "https://files.pythonhosted.org/packages/33/9f/413adf3fc955541ff5536b78fcf0754680b3c6d95103230252a2c9408d23/numpy-2.4.2-pp311-pypy311_pp73-macosx_14_0_x86_64.whl", hash = "sha256:cf28c0c1d4c4bf00f509fa7eb02c58d7caf221b50b467bcb0d9bbf1584d5c821", size = 6714252, upload-time = "2026-01-31T23:13:00.518Z" },
-    { url = "https://files.pythonhosted.org/packages/91/da/643aad274e29ccbdf42ecd94dafe524b81c87bcb56b83872d54827f10543/numpy-2.4.2-pp311-pypy311_pp73-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:e04ae107ac591763a47398bb45b568fc38f02dbc4aa44c063f67a131f99346cb", size = 15797142, upload-time = "2026-01-31T23:13:02.219Z" },
-    { url = "https://files.pythonhosted.org/packages/66/27/965b8525e9cb5dc16481b30a1b3c21e50c7ebf6e9dbd48d0c4d0d5089c7e/numpy-2.4.2-pp311-pypy311_pp73-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:602f65afdef699cda27ec0b9224ae5dc43e328f4c24c689deaf77133dbee74d0", size = 16727979, upload-time = "2026-01-31T23:13:04.62Z" },
-    { url = "https://files.pythonhosted.org/packages/de/e5/b7d20451657664b07986c2f6e3be564433f5dcaf3482d68eaecd79afaf03/numpy-2.4.2-pp311-pypy311_pp73-win_amd64.whl", hash = "sha256:be71bf1edb48ebbbf7f6337b5bfd2f895d1902f6335a5830b20141fc126ffba0", size = 12502577, upload-time = "2026-01-31T23:13:07.08Z" },
-]
-
-[[package]]
 name = "nvalchemi-toolkit"
 source = { editable = "." }
 dependencies = [
+    { name = "click" },
     { name = "dm-tree" },
     { name = "jaxtyping" },
     { name = "loguru" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "nvalchemi-toolkit-ops" },
-    { name = "nvidia-physicsnemo" },
+    { name = "nvidia-physicsnemo", version = "2.0.0", source = { registry = "https://pypi.nvidia.com/" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "nvidia-physicsnemo", version = "2.1.1", source = { registry = "https://pypi.nvidia.com/" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
     { name = "periodictable" },
+    { name = "plotext" },
     { name = "plum-dispatch" },
     { name = "pydantic" },
     { name = "rich" },
@@ -4016,7 +3888,7 @@ cu12 = [
     { name = "cuequivariance-ops-torch-cu12", marker = "sys_platform != 'darwin'" },
     { name = "cuml-cu12", marker = "sys_platform != 'darwin'" },
     { name = "nvalchemi-toolkit-ops", extra = ["torch-cu12"], marker = "(sys_platform != 'darwin' and extra == 'extra-17-nvalchemi-toolkit-cu12') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "nvidia-physicsnemo", extra = ["cu12"], marker = "(sys_platform != 'darwin' and extra == 'extra-17-nvalchemi-toolkit-cu12') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "nvidia-physicsnemo", version = "2.1.1", source = { registry = "https://pypi.nvidia.com/" }, extra = ["cu12"], marker = "(sys_platform != 'darwin' and extra == 'extra-17-nvalchemi-toolkit-cu12') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "torch", version = "2.12.0+cu126", source = { registry = "https://download.pytorch.org/whl/cu126" }, marker = "sys_platform != 'darwin'" },
     { name = "torchvision", version = "0.27.0+cu126", source = { registry = "https://download.pytorch.org/whl/cu126" }, marker = "sys_platform != 'darwin'" },
 ]
@@ -4024,7 +3896,7 @@ cu13 = [
     { name = "cuequivariance-ops-torch-cu13", marker = "sys_platform != 'darwin'" },
     { name = "cuml-cu13", marker = "sys_platform != 'darwin'" },
     { name = "nvalchemi-toolkit-ops", extra = ["torch-cu13"], marker = "(sys_platform != 'darwin' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "nvidia-physicsnemo", extra = ["cu13"], marker = "(sys_platform != 'darwin' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "nvidia-physicsnemo", version = "2.1.1", source = { registry = "https://pypi.nvidia.com/" }, extra = ["cu13"], marker = "(sys_platform != 'darwin' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "torch", version = "2.12.0+cu130", source = { registry = "https://download.pytorch.org/whl/cu130" }, marker = "sys_platform != 'darwin'" },
     { name = "torchvision", version = "0.27.0+cu130", source = { registry = "https://download.pytorch.org/whl/cu130" }, marker = "sys_platform != 'darwin'" },
 ]
@@ -4034,6 +3906,9 @@ mace = [
 ]
 pymatgen = [
     { name = "pymatgen" },
+]
+tensorboard = [
+    { name = "tensorboard" },
 ]
 uma = [
     { name = "fairchem-core" },
@@ -4087,6 +3962,7 @@ docs = [
 requires-dist = [
     { name = "aimnet", marker = "extra == 'aimnet'" },
     { name = "ase", marker = "extra == 'ase'", specifier = ">=3.27.0" },
+    { name = "click" },
     { name = "cuequivariance-ops-torch-cu12", marker = "sys_platform != 'darwin' and extra == 'cu12'", specifier = ">=0.8.0" },
     { name = "cuequivariance-ops-torch-cu13", marker = "sys_platform != 'darwin' and extra == 'cu13'", specifier = ">=0.8.0" },
     { name = "cuequivariance-torch", marker = "extra == 'mace'", specifier = ">=0.8.0" },
@@ -4097,7 +3973,7 @@ requires-dist = [
     { name = "jaxtyping", specifier = ">=0.3.2" },
     { name = "loguru" },
     { name = "mace-torch", marker = "extra == 'mace'", specifier = "==0.3.15" },
-    { name = "numpy" },
+    { name = "numpy", specifier = "<2.4" },
     { name = "nvalchemi-toolkit-ops", git = "https://github.com/NVIDIA/nvalchemi-toolkit-ops.git?rev=0.4.0-rc" },
     { name = "nvalchemi-toolkit-ops", extras = ["torch-cu12"], marker = "sys_platform != 'darwin' and extra == 'cu12'", git = "https://github.com/NVIDIA/nvalchemi-toolkit-ops.git?rev=0.4.0-rc" },
     { name = "nvalchemi-toolkit-ops", extras = ["torch-cu13"], marker = "sys_platform != 'darwin' and extra == 'cu13'", git = "https://github.com/NVIDIA/nvalchemi-toolkit-ops.git?rev=0.4.0-rc" },
@@ -4105,10 +3981,12 @@ requires-dist = [
     { name = "nvidia-physicsnemo", extras = ["cu12"], marker = "sys_platform != 'darwin' and extra == 'cu12'", specifier = ">=2.0.0" },
     { name = "nvidia-physicsnemo", extras = ["cu13"], marker = "sys_platform != 'darwin' and extra == 'cu13'", specifier = ">=2.0.0" },
     { name = "periodictable", specifier = "==2.0.2" },
+    { name = "plotext" },
     { name = "plum-dispatch", specifier = ">=2.5.7" },
     { name = "pydantic", specifier = ">=2.11.7" },
     { name = "pymatgen", marker = "extra == 'pymatgen'", specifier = ">=2025.10.7" },
     { name = "rich", specifier = ">=13.0.0" },
+    { name = "tensorboard", marker = "extra == 'tensorboard'" },
     { name = "tensordict", specifier = ">=0.11.0" },
     { name = "torch", specifier = ">=2.8" },
     { name = "torch", marker = "sys_platform != 'darwin' and extra == 'cu12'", index = "https://download.pytorch.org/whl/cu126", conflict = { package = "nvalchemi-toolkit", extra = "cu12" } },
@@ -4117,7 +3995,7 @@ requires-dist = [
     { name = "torchvision", marker = "sys_platform != 'darwin' and extra == 'cu13'", index = "https://download.pytorch.org/whl/cu130", conflict = { package = "nvalchemi-toolkit", extra = "cu13" } },
     { name = "zarr", specifier = ">=3" },
 ]
-provides-extras = ["aimnet", "ase", "cu12", "cu13", "mace", "pymatgen", "uma"]
+provides-extras = ["aimnet", "ase", "cu12", "cu13", "mace", "pymatgen", "tensorboard", "uma"]
 
 [package.metadata.requires-dev]
 build = [
@@ -4166,8 +4044,7 @@ name = "nvalchemi-toolkit-ops"
 version = "0.4.0"
 source = { git = "https://github.com/NVIDIA/nvalchemi-toolkit-ops.git?rev=0.4.0-rc#ef898c6e3372032842788f6672f84bef33f311ac" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "warp-lang" },
 ]
 
@@ -4892,7 +4769,7 @@ dependencies = [
     { name = "astunparse" },
     { name = "gast" },
     { name = "makefun" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "nvidia-libnvcomp-cu12" },
     { name = "nvidia-nvimgcodec-cu12", extra = ["all"], marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "nvtx" },
@@ -4913,7 +4790,7 @@ dependencies = [
     { name = "astunparse" },
     { name = "gast" },
     { name = "makefun" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "nvidia-libnvcomp-cu13" },
     { name = "nvidia-nvimgcodec-cu13", extra = ["all"], marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "nvtx" },
@@ -5277,41 +5154,238 @@ wheels = [
 name = "nvidia-physicsnemo"
 version = "2.0.0"
 source = { registry = "https://pypi.nvidia.com/" }
+resolution-markers = [
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'win32'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'win32'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'win32'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'emscripten'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'win32'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'emscripten'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'win32'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'emscripten'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'win32'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'emscripten'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
 dependencies = [
-    { name = "cftime" },
-    { name = "einops" },
-    { name = "gitpython" },
-    { name = "h5py" },
-    { name = "hydra-core" },
-    { name = "importlib-metadata" },
-    { name = "jaxtyping" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
-    { name = "nvtx" },
-    { name = "omegaconf" },
-    { name = "onnx" },
-    { name = "packaging" },
-    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "pandas", version = "3.0.1", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-uma' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13')" },
-    { name = "requests" },
-    { name = "s3fs" },
-    { name = "tensordict" },
-    { name = "termcolor" },
-    { name = "timm" },
+    { name = "cftime", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "einops", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "gitpython", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "h5py", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "hydra-core", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "importlib-metadata", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "jaxtyping", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "numpy", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "nvtx", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "omegaconf", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "onnx", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "packaging", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "pandas", version = "3.0.1", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "requests", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "s3fs", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "tensordict", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "termcolor", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "timm", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "torch", version = "2.8.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "torch", version = "2.12.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "torch", version = "2.12.0+cu126", source = { registry = "https://download.pytorch.org/whl/cu126" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "torch", version = "2.12.0+cu130", source = { registry = "https://download.pytorch.org/whl/cu130" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "torchvision", version = "0.23.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "torchvision", version = "0.27.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "torchvision", version = "0.27.0+cu126", source = { registry = "https://download.pytorch.org/whl/cu126" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "torchvision", version = "0.27.0+cu130", source = { registry = "https://download.pytorch.org/whl/cu130" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "tqdm" },
-    { name = "treelib" },
-    { name = "warp-lang" },
+    { name = "tqdm", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "treelib", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "warp-lang", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
 ]
 wheels = [
     { url = "https://pypi.nvidia.com/nvidia-physicsnemo/nvidia_physicsnemo-2.0.0-py3-none-any.whl", hash = "sha256:fcea6ac198a2925ab81c3f62011225f53b73e1212e5364aac939ab599c0dfd9d" },
+]
+
+[[package]]
+name = "nvidia-physicsnemo"
+version = "2.1.1"
+source = { registry = "https://pypi.nvidia.com/" }
+resolution-markers = [
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'aarch64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'aarch64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'aarch64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'aarch64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'aarch64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'aarch64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'aarch64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'aarch64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'aarch64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'aarch64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'aarch64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'aarch64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'aarch64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'aarch64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'aarch64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'aarch64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'aarch64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'aarch64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 'aarch64' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version == '3.12.*' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine != 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+    "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
+]
+dependencies = [
+    { name = "cftime", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "einops", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "gitpython", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "h5py", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "hydra-core", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "importlib-metadata", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "jaxtyping", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "numpy", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "nvtx", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "omegaconf", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "onnx", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "packaging", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "pandas", version = "3.0.1", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "requests", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "s3fs", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "tensordict", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "termcolor", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "timm", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "torch", version = "2.12.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "torch", version = "2.12.0+cu126", source = { registry = "https://download.pytorch.org/whl/cu126" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "torch", version = "2.12.0+cu130", source = { registry = "https://download.pytorch.org/whl/cu130" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "torchvision", version = "0.27.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "torchvision", version = "0.27.0+cu126", source = { registry = "https://download.pytorch.org/whl/cu126" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "torchvision", version = "0.27.0+cu130", source = { registry = "https://download.pytorch.org/whl/cu130" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "tqdm", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "treelib", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "urllib3", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+    { name = "warp-lang", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-mace' or extra != 'extra-17-nvalchemi-toolkit-uma'" },
+]
+wheels = [
+    { url = "https://pypi.nvidia.com/nvidia-physicsnemo/nvidia_physicsnemo-2.1.1-py3-none-any.whl", hash = "sha256:86479174f725dd8f569f76f7e688f64721afd2c16421e8516973f46f8febbefc" },
 ]
 
 [package.optional-dependencies]
@@ -5371,8 +5445,7 @@ version = "1.21.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ml-dtypes" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "protobuf" },
     { name = "typing-extensions" },
 ]
@@ -5760,8 +5833,7 @@ resolution-markers = [
     "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32' and extra == 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-mace' and extra != 'extra-17-nvalchemi-toolkit-uma'",
 ]
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "numpy", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "python-dateutil", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "pytz", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "tzdata", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
@@ -5822,7 +5894,7 @@ resolution-markers = [
     "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-uma' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13')" },
+    { name = "numpy", marker = "extra == 'extra-17-nvalchemi-toolkit-uma' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13')" },
     { name = "python-dateutil", marker = "extra == 'extra-17-nvalchemi-toolkit-uma' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13')" },
     { name = "tzdata", marker = "(sys_platform == 'emscripten' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13') or (sys_platform == 'win32' and extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
 ]
@@ -5875,8 +5947,7 @@ name = "periodictable"
 version = "2.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "pyparsing" },
 ]
 wheels = [
@@ -5952,6 +6023,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/1b/04/fea538adf7dbbd6d186f551d595961e564a3b6715bdf276b477460858672/platformdirs-4.9.2.tar.gz", hash = "sha256:9a33809944b9db043ad67ca0db94b14bf452cc6aeaac46a88ea55b26e2e9d291", size = 28394, upload-time = "2026-02-16T03:56:10.574Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/48/31/05e764397056194206169869b50cf2fee4dbbbc71b344705b9c0d878d4d8/platformdirs-4.9.2-py3-none-any.whl", hash = "sha256:9170634f126f8efdae22fb58ae8a0eaa86f38365bc57897a6c4f781d1f5875bd", size = 21168, upload-time = "2026-02-16T03:56:08.891Z" },
+]
+
+[[package]]
+name = "plotext"
+version = "5.3.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/c9/d7/f75f397af966fe252d0d34ffd3cae765317fce2134f925f95e7d6725d1ce/plotext-5.3.2.tar.gz", hash = "sha256:52d1e932e67c177bf357a3f0fe6ce14d1a96f7f7d5679d7b455b929df517068e", size = 61967, upload-time = "2024-09-24T15:13:37.728Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f6/1e/12fe7c40cd2099a1f454518754ed229b01beaf3bbb343127f0cc13ce6c22/plotext-5.3.2-py3-none-any.whl", hash = "sha256:394362349c1ddbf319548cfac17ca65e6d5dfc03200c40dfdc0503b3e95a2283", size = 64047, upload-time = "2024-09-24T15:13:36.296Z" },
 ]
 
 [[package]]
@@ -6500,7 +6580,7 @@ source = { registry = "https://pypi.nvidia.com/" }
 dependencies = [
     { name = "cuda-python", version = "12.9.6", source = { registry = "https://pypi.org/simple" } },
     { name = "libraft-cu12" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "rmm-cu12" },
 ]
 wheels = [
@@ -6519,7 +6599,7 @@ source = { registry = "https://pypi.nvidia.com/" }
 dependencies = [
     { name = "cuda-python", version = "13.2.0", source = { registry = "https://pypi.org/simple" } },
     { name = "libraft-cu13" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "rmm-cu13" },
 ]
 wheels = [
@@ -6549,8 +6629,7 @@ dependencies = [
     { name = "matplotlib" },
     { name = "monty" },
     { name = "networkx" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "orjson" },
     { name = "palettable" },
     { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
@@ -6881,8 +6960,7 @@ name = "rdkit"
 version = "2025.9.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "pillow" },
 ]
 wheels = [
@@ -6984,7 +7062,7 @@ source = { registry = "https://pypi.nvidia.com/" }
 dependencies = [
     { name = "cuda-python", version = "12.9.6", source = { registry = "https://pypi.org/simple" } },
     { name = "librmm-cu12" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
 ]
 wheels = [
     { url = "https://pypi.nvidia.com/rmm-cu12/rmm_cu12-26.2.0-cp311-cp311-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:9f016db706c24d55e04206633ee89af8ade86fceafe9155b5bff8d4d92cee04b" },
@@ -7002,7 +7080,7 @@ source = { registry = "https://pypi.nvidia.com/" }
 dependencies = [
     { name = "cuda-python", version = "13.2.0", source = { registry = "https://pypi.org/simple" } },
     { name = "librmm-cu13" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
 ]
 wheels = [
     { url = "https://pypi.nvidia.com/rmm-cu13/rmm_cu13-26.4.0-cp311-abi3-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:afc337805c04570315ad26cdd865c768d21f3e8ad9bf0f23de7e201af90c0a3a" },
@@ -7173,8 +7251,7 @@ version = "1.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "joblib" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "numpy" },
     { name = "scipy" },
     { name = "threadpoolctl" },
 ]
@@ -7211,8 +7288,7 @@ name = "scipy"
 version = "1.17.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/7a/97/5a3609c4f8d58b039179648e62dd220f89864f56f7357f5d4f45c29eb2cc/scipy-1.17.1.tar.gz", hash = "sha256:95d8e012d8cb8816c226aef832200b1d45109ed4464303e997c5b13122b297c0", size = 30573822, upload-time = "2026-02-23T00:26:24.851Z" }
 wheels = [
@@ -7364,8 +7440,7 @@ name = "spglib"
 version = "2.7.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "typing-extensions", marker = "python_full_version < '3.13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a9/06/7964acb4c444191376bd87f91579475fbe7623ca943cce40cee8fb7f2c36/spglib-2.7.0.tar.gz", hash = "sha256:c40907a42c9dc45572f46740bf95412f84fb0eda30267e31665d104a4bde6627", size = 2366134, upload-time = "2025-12-29T09:48:26.42Z" }
@@ -7966,7 +8041,7 @@ dependencies = [
     { name = "absl-py" },
     { name = "grpcio" },
     { name = "markdown" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "packaging" },
     { name = "pillow" },
     { name = "protobuf" },
@@ -7995,8 +8070,7 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cloudpickle" },
     { name = "importlib-metadata" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "orjson", marker = "python_full_version < '3.13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "packaging" },
     { name = "pyvers" },
@@ -8385,8 +8459,7 @@ version = "1.8.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "lightning-utilities" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-mace')" },
+    { name = "numpy" },
     { name = "packaging" },
     { name = "torch", version = "2.12.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace')" },
     { name = "torch", version = "2.12.0+cu126", source = { registry = "https://download.pytorch.org/whl/cu126" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
@@ -8403,7 +8476,7 @@ version = "0.2.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fsspec" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "numpy" },
     { name = "packaging" },
     { name = "psutil" },
     { name = "pyre-extensions" },
@@ -8444,7 +8517,7 @@ resolution-markers = [
     "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "numpy", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "pillow", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "torch", version = "2.8.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
 ]
@@ -8492,7 +8565,7 @@ resolution-markers = [
     "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "numpy", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "pillow", marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "torch", version = "2.12.0", source = { registry = "https://pypi.org/simple" }, marker = "(extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-cu13') or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-mace') or (extra != 'extra-17-nvalchemi-toolkit-cu12' and extra != 'extra-17-nvalchemi-toolkit-cu13' and extra != 'extra-17-nvalchemi-toolkit-uma')" },
 ]
@@ -8558,7 +8631,7 @@ resolution-markers = [
     "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "numpy", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "pillow", marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "torch", version = "2.12.0+cu126", source = { registry = "https://download.pytorch.org/whl/cu126" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
 ]
@@ -8602,7 +8675,7 @@ resolution-markers = [
     "python_full_version < '3.12' and platform_machine == 's390x' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "numpy", marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "pillow", marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
     { name = "torch", version = "2.12.0+cu130", source = { registry = "https://download.pytorch.org/whl/cu130" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
 ]
@@ -8659,8 +8732,7 @@ name = "treelite"
 version = "4.7.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or (extra == 'extra-17-nvalchemi-toolkit-cu12' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
+    { name = "numpy" },
     { name = "packaging" },
     { name = "scipy" },
 ]
@@ -8846,11 +8918,11 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "2.6.3"
+version = "2.7.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/c7/24/5f1b3bdffd70275f6661c76461e25f024d5a38a46f04aaca912426a2b1d3/urllib3-2.6.3.tar.gz", hash = "sha256:1b62b6884944a57dbe321509ab94fd4d3b307075e0c2eae991ac71ee15ad38ed", size = 435556, upload-time = "2026-01-07T16:24:43.925Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/53/0c/06f8b233b8fd13b9e5ee11424ef85419ba0d8ba0b3138bf360be2ff56953/urllib3-2.7.0.tar.gz", hash = "sha256:231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c", size = 433602, upload-time = "2026-05-07T16:13:18.596Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/39/08/aaaad47bc4e9dc8c725e68f9d04865dbcb2052843ff09c97b08904852d84/urllib3-2.6.3-py3-none-any.whl", hash = "sha256:bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4", size = 131584, upload-time = "2026-01-07T16:24:42.685Z" },
+    { url = "https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl", hash = "sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897", size = 131087, upload-time = "2026-05-07T16:13:17.151Z" },
 ]
 
 [[package]]
@@ -8961,8 +9033,7 @@ name = "warp-lang"
 version = "1.14.0"
 source = { registry = "https://pypi.nvidia.com/" }
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
 ]
 wheels = [
     { url = "https://pypi.nvidia.com/warp-lang/warp_lang-1.14.0-py3-none-macosx_11_0_arm64.whl", hash = "sha256:12656050545cc77bf9b9b155399496c1a6279b5b6c59e407507d6858a2beb4a2" },
@@ -9261,8 +9332,7 @@ dependencies = [
     { name = "donfig" },
     { name = "google-crc32c" },
     { name = "numcodecs" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu12' or (extra == 'extra-17-nvalchemi-toolkit-cu13' and extra == 'extra-17-nvalchemi-toolkit-uma') or (extra == 'extra-17-nvalchemi-toolkit-mace' and extra == 'extra-17-nvalchemi-toolkit-uma')" },
-    { name = "numpy", version = "2.4.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'extra-17-nvalchemi-toolkit-cu13' or extra == 'extra-17-nvalchemi-toolkit-uma' or extra != 'extra-17-nvalchemi-toolkit-cu12'" },
+    { name = "numpy" },
     { name = "packaging" },
     { name = "typing-extensions" },
 ]

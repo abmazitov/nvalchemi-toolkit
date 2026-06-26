@@ -14,8 +14,9 @@ license = {file="LICENSE"}
 dependencies = [
     "nvalchemi-toolkit-ops>=0.3.1",
     "torch>=2.8",
+    "click",
     "loguru",
-    "numpy",
+    "numpy<2.4",
     "jaxtyping>=0.3.2",
     "tensordict>=0.11.0",
     "pydantic>=2.11.7",
@@ -24,6 +25,7 @@ dependencies = [
     "zarr>=3",
     "periodictable==2.0.2",
     "rich>=13.0.0",
+    "plotext",
     "nvidia-physicsnemo>=2.0.0",
 ]
 keywords = [
@@ -52,6 +54,7 @@ include = ["nvalchemi/**/*.py"]
 
 [project.scripts]
 nvalchemi-io-test = "nvalchemi.data.io_test:main"
+nvalchemi-training = "nvalchemi.training.cli:main"
 
 [project.urls]
 
@@ -85,6 +88,9 @@ pymatgen = [
 mace = [
     "cuequivariance-torch>=0.8.0",
     "mace-torch==0.3.15",
+]
+tensorboard = [
+    "tensorboard",
 ]
 uma = [
     "fairchem-core>=2.0.0",
