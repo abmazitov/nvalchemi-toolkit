@@ -13,9 +13,46 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """
-NVT MD with PET (with LJ Fallback)
-=====================================
-TBD
+PET (Point Edge Transformer): NVT Molecular Dynamics
+====================================================
+
+PET is a graph transformer interatomic potential from the
+`metatrain <https://github.com/metatensor/metatrain>`_ project.
+:class:`~nvalchemi.models.pet.PETWrapper` wraps metatrain's pure-torch
+``PETBackend`` (structure preprocessing, featurization, prediction) as a
+:class:`~nvalchemi.models.base.BaseModelMixin` model and computes conservative
+forces and stress from the energy via autograd. It loads a ``pet-mad``-style
+checkpoint (e.g. ``pet-mad-xs-v1.5.0.ckpt``) through
+:meth:`~nvalchemi.models.pet.PETWrapper.from_checkpoint`.
+
+This example drives PET through nvalchemi's Langevin (NVT) integrator on a
+small water cluster. The simulation code is model-agnostic: the neighbor list
+is wired automatically from
+:attr:`~nvalchemi.models.base.ModelConfig.neighbor_config`, so the same loop
+runs whether PET or the Lennard-Jones fallback supplies the forces.
+
+Set ``PET_MODEL_PATH=/path/to/checkpoint.ckpt`` to run with PET; otherwise the
+example falls back to a Lennard-Jones argon cluster so it works in CI without a
+checkpoint or the optional ``metatrain`` dependency.
+
+Key concepts demonstrated
+-------------------------
+* Loading a PET checkpoint with
+  ``PETWrapper.from_checkpoint(checkpoint_path=..., device=...)`` (old
+  checkpoints are auto-upgraded to the current metatrain layout).
+* Automatic neighbor-list wiring via ``ModelConfig.neighbor_config``.
+* A model-agnostic NVT loop with an LJ fallback for CI.
+
+.. note::
+
+   ``PETWrapper.from_checkpoint(..., compile_model=True, **compile_kwargs)``
+   ``torch.compile``\\ s the three backend blocks (pass e.g.
+   ``fullgraph=True``; requires a ``solver``-method checkpoint such as
+   pet-mad >= v1.6.0). ``torch.compile`` has a fixed per-call overhead and a
+   one-time warmup (seconds), so it is **slower than eager for small systems on
+   CPU** — like the few-atom clusters here — and only pays off for larger cells,
+   on GPU, and over long trajectories. Benchmark on your target system before
+   enabling it for production MD.
 """
 
 from __future__ import annotations
@@ -47,11 +84,12 @@ from nvalchemi.hooks import NeighborListHook
 logging.basicConfig(level=logging.INFO)
 
 # %%
-# Model selection: MACE or LJ fallback
+# Model selection: PET or LJ fallback
 # --------------------------------------
-# The ``MACE_MODEL_PATH`` environment variable selects the model.  If it is
-# unset (or MACE is not installed), we fall back to the LJ potential so the
-# example works in CI without any MACE dependency.
+# The ``PET_MODEL_PATH`` environment variable selects the model.  If it is
+# unset (or metatrain is not installed / the checkpoint fails to load), we fall
+# back to the LJ potential so the example works in CI without any PET
+# dependency.
 #
 # Both code paths produce a ``model`` object that satisfies the
 # :class:`~nvalchemi.models.base.BaseModelMixin` interface, so all simulation
@@ -101,7 +139,7 @@ neighbor_hook = NeighborListHook(
 # %%
 # Building the system
 # --------------------
-# When MACE is active we use a small water cluster (3 molecules, 9 atoms).
+# When PET is active we use a small water cluster (3 molecules, 9 atoms).
 # With LJ we use an 8-atom argon cluster.  Both result in the same simulation
 # code below.
 
@@ -206,7 +244,7 @@ print(f"Run complete: {nvt.step_count} steps")
 # Model-agnostic observation
 # ---------------------------
 # Temperature and mean energy are computed the same way regardless of whether
-# MACE or LJ provided the forces.
+# PET or LJ provided the forces.
 
 # Kinetic energy per graph (eV) → temperature.
 # 2 KE = 3 N k_B T  →  T = 2 KE / (3 N k_B)

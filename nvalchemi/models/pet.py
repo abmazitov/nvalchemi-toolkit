@@ -14,17 +14,25 @@
 # limitations under the License.
 """PET (Point Edge Transformer) model wrapper.
 
-Wraps the pure-torch internals of the PET architecture from the
-`metatrain <https://github.com/metatensor/metatrain>`_ package as a
-:class:`~nvalchemi.models.base.BaseModelMixin`-compatible wrapper. Unlike
-:class:`~nvalchemi.models.mace.MACEWrapper` — which wraps an already
-instantiated MACE module — :class:`PETWrapper` rebuilds a slim
-:class:`_PETCore` that inherits only the pure-torch submodules from
-``metatrain.pet.modules.*`` (``CartesianTransformer``, NEF helpers, cutoff
-utilities). The metatomic-bound PET class is **not** reused, so the forward
-path is ``torch.compile``-friendly and free of
-``metatomic.torch.System`` / ``metatensor.torch.TensorMap`` dependencies
-at call time.
+Wraps the pure-torch :class:`metatrain.pet.modules.backend.PETBackend` as a
+:class:`~nvalchemi.models.base.BaseModelMixin`-compatible model. ``PETBackend``
+is the structure-preprocessing / featurization / prediction core of the PET
+architecture, operating purely on :class:`torch.Tensor` objects (no
+``metatomic.torch.System`` / ``metatensor.torch.TensorMap`` at call time), so it
+is ``torch.compile``-friendly.
+
+:class:`PETWrapper` owns a ``PETBackend`` (built from hypers + atomic types) and
+adds only the nvalchemi-specific glue:
+
+* translating a :class:`~nvalchemi.data.Batch` into the concatenated plain
+  tensors the backend expects (:meth:`PETWrapper.adapt_input`, mirroring
+  :func:`metatrain.pet.modules.structures.concatenate_structures`);
+* driving the three backend building blocks
+  (:meth:`~metatrain.pet.modules.backend.PETBackend.preprocess`,
+  :meth:`~metatrain.pet.modules.backend.PETBackend.calculate_features`,
+  :meth:`~metatrain.pet.modules.backend.PETBackend.predict`);
+* gradient / affine-strain wiring for conservative forces and stress;
+* the flat composition / scaler buffers decoded from the checkpoint.
 
 Usage
 -----
@@ -49,15 +57,16 @@ Notes
   — are decoded once at :meth:`PETWrapper.from_checkpoint` time into two
   flat torch buffers (``composition_energy``, ``scale_energy``) so the
   forward path has no metatensor dependency.
-* Only the feedforward featurizer path is implemented (the residual path
-  is not reachable from pet-mad-xs checkpoints).
-* The long-range module is skipped entirely.
+* Only the ``energy`` output is registered on the backend; the long-range
+  module is skipped entirely.
 """
 
 from __future__ import annotations
 
+import contextlib
 import sys
 import types
+import warnings
 
 # metatrain.pet.__init__ imports metatrain.pet.trainer, which imports
 # metatrain.utils.distributed.slurm, which pulls in `hostlist`. That package
@@ -80,7 +89,11 @@ from torch import nn
 from nvalchemi._optional import OptionalDependency
 from nvalchemi._typing import ModelOutputs
 from nvalchemi.data import AtomicData, Batch
-from nvalchemi.models._utils import autograd_stresses, prepare_strain
+from nvalchemi.models._utils import (
+    autograd_forces_and_stresses,
+    autograd_stresses,
+    prepare_strain,
+)
 from nvalchemi.models.base import (
     BaseModelMixin,
     ModelConfig,
@@ -117,312 +130,44 @@ _REQUIRED_HYPERS: tuple[str, ...] = (
     "featurizer_type",
 )
 
+# The single-block, scalar ``energy`` output shape passed to
+# ``PETBackend.add_output``. The block key ``energy___0`` and shape ``[1]`` are
+# what ``metatrain.pet.model.PET._add_output`` derives for a standard scalar
+# energy target (a single TensorMap block with key name ``"_"`` / value ``0``
+# and one property).
+_ENERGY_OUTPUT_SHAPES: dict[str, list[int]] = {"energy___0": [1]}
 
-def _validate_hypers(hypers: dict[str, Any]) -> None:
-    """Raise :class:`ValueError` if *hypers* is missing a required key or uses
-    an unsupported featurizer type.
+
+def _normalize_hypers(hypers: dict[str, Any]) -> dict[str, Any]:
+    """Validate *hypers* and fill in the keys ``PETBackend`` reads directly.
+
+    Returns a copy with ``num_neighbors_adaptive`` / ``adaptive_cutoff_method``
+    defaulted when absent (checkpoints already carry these after
+    :meth:`metatrain.pet.PET.upgrade_checkpoint`; hand-built hypers may not).
 
     Parameters
     ----------
     hypers : dict[str, Any]
-        Hyper-parameter dict pulled from the checkpoint's ``model_hypers``.
+        Hyper-parameter dict pulled from the checkpoint's ``model_hypers`` (or
+        constructed by hand for tests).
+
+    Returns
+    -------
+    dict[str, Any]
+        Normalised copy.
 
     Raises
     ------
     ValueError
-        When a required key is missing or ``featurizer_type`` is not
-        ``"feedforward"``.
+        When a required key is missing.
     """
     missing = [key for key in _REQUIRED_HYPERS if key not in hypers]
     if missing:
         raise ValueError(f"PET hypers are missing required keys: {missing}")
-    featurizer = hypers["featurizer_type"]
-    if featurizer != "feedforward":
-        raise ValueError(
-            f"PETWrapper only supports the 'feedforward' featurizer "
-            f"(got {featurizer!r}). Use metatrain.pet.PET directly if you "
-            "need the residual path."
-        )
-
-
-# ---------------------------------------------------------------------------
-# Core module
-# ---------------------------------------------------------------------------
-
-
-@OptionalDependency.PET.require
-class _PETCore(nn.Module):
-    """Pure-torch PET core — energy-head only, no metatomic/metatensor.
-
-    Holds the exact ``nn.Module`` attributes that appear in a metatrain PET
-    checkpoint state dict (minus the ``additive_models``, ``scaler``, long-range,
-    and non-conservative heads we deliberately drop). The shape and naming
-    conventions mirror :class:`metatrain.pet.PET` so a filtered state dict
-    loads with ``strict=True``.
-
-    Parameters
-    ----------
-    hypers : dict[str, Any]
-        PET hyper-parameters. Must include the keys listed in
-        :data:`_REQUIRED_HYPERS`. ``featurizer_type`` must be
-        ``"feedforward"``.
-    atomic_types : Sequence[int]
-        Atomic numbers in the order used to build the species-index map.
-        For pet-mad-xs this is ``[1, 2, ..., 102]``.
-
-    Attributes
-    ----------
-    node_embedders : nn.ModuleList
-        One :class:`torch.nn.Embedding` of shape ``[num_species, d_node]``
-        (feedforward featurizer uses a single readout layer).
-    edge_embedder : nn.Embedding
-        Edge-species embedding of shape ``[num_species, d_pet]``.
-    gnn_layers : nn.ModuleList
-        ``num_gnn_layers`` x :class:`CartesianTransformer` blocks.
-    combination_norms, combination_mlps : nn.ModuleList
-        Per-layer bidirectional-message combiners.
-    node_heads, edge_heads : nn.ModuleDict
-        The per-output (``"energy"`` only) readout MLPs.
-    node_last_layers, edge_last_layers : nn.ModuleDict
-        The per-output final linear projections producing atomic energies.
-    species_to_species_index : torch.Tensor
-        Buffer of shape ``[max_Z + 1]`` mapping atomic numbers to their
-        index in ``atomic_types``.
-    """
-
-    def __init__(
-        self,
-        hypers: dict[str, Any],
-        atomic_types: Sequence[int],
-    ) -> None:
-        from metatrain.pet.modules.transformer import CartesianTransformer
-
-        super().__init__()
-        _validate_hypers(hypers)
-
-        self.hypers = dict(hypers)
-        self.atomic_types = list(atomic_types)
-        self.cutoff = float(hypers["cutoff"])
-        self.cutoff_function = str(hypers["cutoff_function"])
-        self.cutoff_width = float(hypers["cutoff_width"])
-        adaptive = hypers.get("num_neighbors_adaptive")
-        self.num_neighbors_adaptive = float(adaptive) if adaptive is not None else None
-        self.d_pet = int(hypers["d_pet"])
-        self.d_node = int(hypers["d_node"])
-        self.d_head = int(hypers["d_head"])
-        self.num_readout_layers = 1  # feedforward featurizer
-
-        num_species = len(self.atomic_types)
-        self.gnn_layers = nn.ModuleList(
-            [
-                CartesianTransformer(
-                    self.cutoff,
-                    self.cutoff_width,
-                    self.d_pet,
-                    int(hypers["num_heads"]),
-                    self.d_node,
-                    int(hypers["d_feedforward"]),
-                    int(hypers["num_attention_layers"]),
-                    str(hypers["normalization"]),
-                    str(hypers["activation"]),
-                    float(hypers["attention_temperature"]),
-                    str(hypers["transformer_type"]),
-                    num_species,
-                    layer_index == 0,
-                )
-                for layer_index in range(int(hypers["num_gnn_layers"]))
-            ]
-        )
-        self.combination_norms = nn.ModuleList(
-            [nn.LayerNorm(2 * self.d_pet) for _ in range(int(hypers["num_gnn_layers"]))]
-        )
-        self.combination_mlps = nn.ModuleList(
-            [
-                nn.Sequential(
-                    nn.Linear(2 * self.d_pet, 2 * self.d_pet),
-                    nn.SiLU(),
-                    nn.Linear(2 * self.d_pet, self.d_pet),
-                )
-                for _ in range(int(hypers["num_gnn_layers"]))
-            ]
-        )
-
-        self.node_embedders = nn.ModuleList([nn.Embedding(num_species, self.d_node)])
-        self.edge_embedder = nn.Embedding(num_species, self.d_pet)
-
-        # Energy-only heads / last layers. Matching the metatrain layout
-        # (ModuleDict["energy"] -> ModuleList[1] -> Sequential / ModuleDict)
-        # is load-bearing for `load_state_dict(strict=True)`.
-        self.node_heads = nn.ModuleDict(
-            {
-                "energy": nn.ModuleList(
-                    [
-                        nn.Sequential(
-                            nn.Linear(self.d_node, self.d_head),
-                            nn.SiLU(),
-                            nn.Linear(self.d_head, self.d_head),
-                            nn.SiLU(),
-                        )
-                    ]
-                )
-            }
-        )
-        self.edge_heads = nn.ModuleDict(
-            {
-                "energy": nn.ModuleList(
-                    [
-                        nn.Sequential(
-                            nn.Linear(self.d_pet, self.d_head),
-                            nn.SiLU(),
-                            nn.Linear(self.d_head, self.d_head),
-                            nn.SiLU(),
-                        )
-                    ]
-                )
-            }
-        )
-        self.node_last_layers = nn.ModuleDict(
-            {
-                "energy": nn.ModuleList(
-                    [nn.ModuleDict({"energy___0": nn.Linear(self.d_head, 1)})]
-                )
-            }
-        )
-        self.edge_last_layers = nn.ModuleDict(
-            {
-                "energy": nn.ModuleList(
-                    [nn.ModuleDict({"energy___0": nn.Linear(self.d_head, 1)})]
-                )
-            }
-        )
-
-        # Species-index map, matching the metatrain PET buffer shape.
-        max_z = max(self.atomic_types) if self.atomic_types else 0
-        species_to_species_index = torch.full((max_z + 1,), -1, dtype=torch.long)
-        for i, z in enumerate(self.atomic_types):
-            species_to_species_index[z] = i
-        self.register_buffer(
-            "species_to_species_index", species_to_species_index, persistent=True
-        )
-
-    # ------------------------------------------------------------------
-    # Featurisation
-    # ------------------------------------------------------------------
-
-    def _featurize(
-        self, inputs: dict[str, torch.Tensor]
-    ) -> tuple[torch.Tensor, torch.Tensor]:
-        """Inlined feedforward featurization body.
-
-        Mirrors :meth:`metatrain.pet.PET._feedforward_featurization_impl`,
-        keeping only the tensors the downstream heads actually use.
-        ``use_manual_attention`` is forced to ``False``; we only need
-        inference (no double-backward).
-
-        Parameters
-        ----------
-        inputs : dict[str, torch.Tensor]
-            Dict populated by :meth:`PETWrapper.adapt_input`.
-
-        Returns
-        -------
-        tuple[torch.Tensor, torch.Tensor]
-            ``(node_features, edge_features)`` where ``node_features`` has
-            shape ``[N, d_node]`` and ``edge_features`` has shape
-            ``[N, max_edges_per_node, d_pet]``.
-        """
-        input_node_embeddings = self.node_embedders[0](inputs["element_indices_nodes"])
-        input_edge_embeddings = self.edge_embedder(inputs["element_indices_neighbors"])
-        reverse_idx = inputs["reverse_neighbor_index"]
-        for combination_norm, combination_mlp, gnn_layer in zip(
-            self.combination_norms,
-            self.combination_mlps,
-            self.gnn_layers,
-            strict=True,
-        ):
-            output_node_embeddings, output_edge_embeddings = gnn_layer(
-                input_node_embeddings,
-                input_edge_embeddings,
-                inputs["element_indices_neighbors"],
-                inputs["edge_vectors"],
-                inputs["padding_mask"],
-                inputs["edge_distances"],
-                inputs["cutoff_factors"],
-                False,  # use_manual_attention: inference-only
-            )
-            input_node_embeddings = output_node_embeddings
-            # Reverse the edge messages using the precomputed reverse index.
-            flat = output_edge_embeddings.reshape(
-                output_edge_embeddings.shape[0] * output_edge_embeddings.shape[1],
-                output_edge_embeddings.shape[2],
-            )
-            new_input_edge_embeddings = flat[reverse_idx].reshape(
-                output_edge_embeddings.shape
-            )
-            concatenated = torch.cat(
-                [output_edge_embeddings, new_input_edge_embeddings], dim=-1
-            )
-            input_edge_embeddings = (
-                input_edge_embeddings
-                + output_edge_embeddings
-                + combination_mlp(combination_norm(concatenated))
-            )
-        return input_node_embeddings, input_edge_embeddings
-
-    def forward(
-        self, inputs: dict[str, torch.Tensor]
-    ) -> tuple[torch.Tensor, torch.Tensor]:
-        """Run featurisation and the energy head.
-
-        Parameters
-        ----------
-        inputs : dict[str, torch.Tensor]
-            Dict populated by :meth:`PETWrapper.adapt_input`.
-
-        Returns
-        -------
-        tuple[torch.Tensor, torch.Tensor]
-            ``(node_pred, edge_pred)`` per-atom energy contributions, each
-            of shape ``[N, 1]``. The caller sums them and applies the
-            scaler / composition buffers.
-        """
-        node_feats, edge_feats = self._featurize(inputs)
-        node_head = self.node_heads["energy"][0]
-        edge_head = self.edge_heads["energy"][0]
-        node_last = self.node_last_layers["energy"][0]["energy___0"]
-        edge_last = self.edge_last_layers["energy"][0]["energy___0"]
-
-        node_ll = node_head(node_feats)  # [N, d_head]
-        edge_ll = edge_head(edge_feats)  # [N, max_edges, d_head]
-
-        node_pred = node_last(node_ll)  # [N, 1]
-        # Apply edge last layer per-edge, then zero out padded slots, then
-        # weight by cutoff factors and sum over neighbors. Applying edge_last
-        # after the sum would miscompute the bias contribution.
-        edge_per_edge = edge_last(edge_ll)  # [N, max_edges, 1]
-        padding_mask = inputs["padding_mask"]  # [N, max_edges]
-        edge_per_edge = torch.where(
-            padding_mask.unsqueeze(-1), edge_per_edge, torch.zeros_like(edge_per_edge)
-        )
-        cutoff_factors = inputs["cutoff_factors"]  # [N, max_edges]
-        edge_pred = (edge_per_edge * cutoff_factors.unsqueeze(-1)).sum(dim=1)  # [N, 1]
-        return node_pred, edge_pred
-
-    def compute_node_feats(self, inputs: dict[str, torch.Tensor]) -> torch.Tensor:
-        """Return node features only (for :meth:`PETWrapper.compute_embeddings`).
-
-        Parameters
-        ----------
-        inputs : dict[str, torch.Tensor]
-            Dict populated by :meth:`PETWrapper.adapt_input`.
-
-        Returns
-        -------
-        torch.Tensor
-            Node feature tensor of shape ``[N, d_node]``.
-        """
-        node_feats, _ = self._featurize(inputs)
-        return node_feats
+    normalized = dict(hypers)
+    normalized.setdefault("num_neighbors_adaptive", None)
+    normalized.setdefault("adaptive_cutoff_method", "grid")
+    return normalized
 
 
 # ---------------------------------------------------------------------------
@@ -430,40 +175,49 @@ class _PETCore(nn.Module):
 # ---------------------------------------------------------------------------
 
 
-_DROP_PREFIXES: tuple[str, ...] = ("additive_models.", "scaler.")
-_DROP_SUBSTRINGS: tuple[str, ...] = (
-    ".non_conservative_forces.",
-    ".non_conservative_stress.",
+_HEAD_PREFIXES: tuple[str, ...] = (
+    "node_heads.",
+    "edge_heads.",
+    "node_last_layers.",
+    "edge_last_layers.",
 )
 
 
 def _filter_state_dict(raw_sd: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:
-    """Drop checkpoint keys that belong to the metatomic-bound modules.
+    """Filter a (upgraded) PET checkpoint state dict down to the backend.
 
-    Keeps everything :class:`_PETCore` needs, and discards the composition
-    model, scaler, non-conservative heads, and the ``finetune_config``
-    placeholder. The returned dict is ready for
-    ``_PETCore.load_state_dict(strict=True)``.
+    The current metatrain checkpoint layout (>= v14) nests the pure-torch core
+    under a ``backend.`` prefix and keeps the additive composition model,
+    scaler, long-range featurizer and ``finetune_config`` outside it. This keeps
+    only the ``backend.*`` keys (with the prefix stripped) and, among those,
+    only the ``energy`` readout heads/last-layers — dropping any other output
+    (e.g. ``non_conservative_forces`` / ``non_conservative_stress``) so the
+    result loads into an energy-only :class:`PETBackend` with ``strict=True``.
 
     Parameters
     ----------
     raw_sd : dict[str, torch.Tensor]
-        State dict from ``wrapped_model_checkpoint["model_state_dict"]``.
+        State dict from the upgraded ``wrapped_model_checkpoint``'s
+        ``model_state_dict``.
 
     Returns
     -------
     dict[str, torch.Tensor]
-        Filtered state dict.
+        Filtered state dict, keyed for ``PETBackend.load_state_dict``.
     """
     filtered: dict[str, torch.Tensor] = {}
     for key, value in raw_sd.items():
-        if key == "finetune_config":
+        if not key.startswith("backend."):
+            # Drops additive_models.*, scaler.*, long_range_featurizer.*,
+            # finetune_config, etc.
             continue
-        if key.startswith(_DROP_PREFIXES):
-            continue
-        if any(sub in key for sub in _DROP_SUBSTRINGS):
-            continue
-        filtered[key] = value
+        name = key[len("backend.") :]
+        if name.startswith(_HEAD_PREFIXES):
+            # name == "<which>_heads.<output>.<...>"; keep only energy.
+            output_name = name.split(".")[1]
+            if output_name != "energy":
+                continue
+        filtered[name] = value
     return filtered
 
 
@@ -492,6 +246,25 @@ def _decode_tensor_map_values(buffer: torch.Tensor) -> torch.Tensor:
     return tensor_map.block(0).values
 
 
+@contextlib.contextmanager
+def _ignore_nonleaf_grad_warning():
+    """Silence the benign non-leaf ``.grad`` warning emitted under compile.
+
+    When Dynamo's builder wraps a grad-tracking (non-leaf, ``requires_grad``)
+    tensor as a graph input, it reads its ``.grad`` and PyTorch emits a harmless
+    ``UserWarning``. The autograd graph is left intact, so forces via
+    ``autograd.grad`` still work. Mirrors the helper in
+    ``metatrain/pet/tests/test_backend.py``.
+    """
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
+            "ignore",
+            message=".*grad attribute of a Tensor that is not a leaf Tensor.*",
+            category=UserWarning,
+        )
+        yield
+
+
 # ---------------------------------------------------------------------------
 # Wrapper
 # ---------------------------------------------------------------------------
@@ -501,63 +274,72 @@ def _decode_tensor_map_values(buffer: torch.Tensor) -> torch.Tensor:
 class PETWrapper(nn.Module, BaseModelMixin):
     """:class:`~nvalchemi.models.base.BaseModelMixin` wrapper around PET.
 
-    Handles:
+    Builds and owns a :class:`metatrain.pet.modules.backend.PETBackend` (from
+    *hypers* and *atomic_types*) and drives its three building blocks. Handles:
 
-    * Building the input dict expected by :class:`_PETCore` from a
-      :class:`~nvalchemi.data.Batch` — edge vectors, NEF reshaping,
-      adaptive cutoffs.
-    * Enabling gradients on ``positions`` when autograd outputs are active,
-      and wiring the affine strain trick
-      (:func:`~nvalchemi.models._utils.prepare_strain`) for stress.
-    * Applying the flat composition / scaler buffers decoded from the
-      checkpoint at load time.
-    * Producing :class:`~nvalchemi._typing.ModelOutputs` with
-      ``energy``, ``forces``, and ``stress``.
+    * translating a :class:`~nvalchemi.data.Batch` into the concatenated plain
+      tensors consumed by :meth:`PETBackend.preprocess`
+      (:meth:`adapt_input`);
+    * enabling gradients on ``positions`` when autograd outputs are active, and
+      wiring the affine strain trick
+      (:func:`~nvalchemi.models._utils.prepare_strain`) for stress;
+    * applying the flat composition / scaler buffers decoded from the
+      checkpoint at load time;
+    * producing :class:`~nvalchemi._typing.ModelOutputs` with ``energy``,
+      ``forces``, and ``stress``.
 
     Parameters
     ----------
-    core : _PETCore
-        Core module holding the pure-torch PET weights.
     atomic_types : Sequence[int]
         Atomic numbers in species-index order.
     hypers : dict[str, Any]
-        PET hyper-parameters.
+        PET hyper-parameters. Must include the keys listed in
+        :data:`_REQUIRED_HYPERS`.
     composition_energy : torch.Tensor
-        Per-species reference energy, shape ``[num_species]``. Indexed by
-        the species index (not by atomic number).
+        Per-species reference energy, shape ``[num_species]``. Indexed by the
+        species index (not by atomic number).
     scale_energy : torch.Tensor
         Scalar (0-dim) tensor used as the global energy scale.
 
     Attributes
     ----------
-    core : _PETCore
-        Underlying PET core.
+    backend : PETBackend
+        Underlying pure-torch PET core.
     atomic_types : list[int]
-        Copy of the atomic-number list used to build the core.
+        Copy of the atomic-number list used to build the backend.
     hypers : dict[str, Any]
-        Copy of the hyper-parameters.
+        Normalised copy of the hyper-parameters.
     model_config : ModelConfig
         Capability declaration with ``active_outputs`` defaulting to
         ``{"energy", "forces", "stress"}``.
     """
 
-    core: _PETCore
-
     def __init__(
         self,
-        core: _PETCore,
         atomic_types: Sequence[int],
         hypers: dict[str, Any],
         composition_energy: torch.Tensor,
         scale_energy: torch.Tensor,
     ) -> None:
+        from metatrain.pet.modules.backend import PETBackend
+
         super().__init__()
-        self.core = core
+
         self.atomic_types = list(atomic_types)
-        self.hypers = dict(hypers)
+        self.hypers = _normalize_hypers(hypers)
+
+        # Build the core from hypers + atomic species and register the single
+        # scalar energy output (heads + last layers).
+        self.backend = PETBackend(self.hypers, self.atomic_types)
+        self.backend.add_output("energy", _ENERGY_OUTPUT_SHAPES)
+
+        # Set to True by `from_checkpoint(compile_model=True)`, which compiles
+        # the three backend methods; controls the Dynamo config patching applied
+        # around the backend calls in `forward` / `compute_embeddings`.
+        self._compiled = False
 
         # Per-species reference energy (shape [num_species]) indexed by species
-        # index (core.species_to_species_index lookup), not atomic number.
+        # index (backend.species_to_species_index lookup), not atomic number.
         # Non-persistent: decoded at `from_checkpoint` time from the raw
         # metatensor buffer; saved back via `export_model` using the same route.
         self.register_buffer(
@@ -577,7 +359,7 @@ class PETWrapper(nn.Module, BaseModelMixin):
             supports_pbc=True,
             needs_pbc=False,
             neighbor_config=NeighborConfig(
-                cutoff=float(hypers["cutoff"]),
+                cutoff=float(self.hypers["cutoff"]),
                 format=NeighborListFormat.COO,
                 half_list=False,
             ),
@@ -589,11 +371,17 @@ class PETWrapper(nn.Module, BaseModelMixin):
 
     @property
     def embedding_shapes(self) -> dict[str, tuple[int, ...]]:
-        """Return node/graph embedding shapes, both ``(d_node,)``."""
-        return {
-            "node_embeddings": (self.core.d_node,),
-            "graph_embeddings": (self.core.d_node,),
-        }
+        """Return node/graph embedding shapes.
+
+        Embeddings concatenate the per-layer node features with the
+        cutoff-weighted, neighbor-summed per-layer edge features (see
+        :meth:`compute_embeddings`), so the dimension is
+        ``num_readout_layers * (d_node + d_pet)``.
+        """
+        dim = self.backend.num_readout_layers * (
+            self.backend.d_node + self.backend.d_pet
+        )
+        return {"node_embeddings": (dim,), "graph_embeddings": (dim,)}
 
     # ------------------------------------------------------------------
     # Convenience properties
@@ -602,207 +390,70 @@ class PETWrapper(nn.Module, BaseModelMixin):
     @property
     def cutoff(self) -> float:
         """Interaction cutoff in Angstroms."""
-        return self.core.cutoff
+        return float(self.backend.cutoff)
 
     @property
     def _model_dtype(self) -> torch.dtype:
-        """Return the current dtype of the core's parameters.
+        """Return the current dtype of the backend's parameters.
 
         Read live from ``parameters()`` so it stays correct after
         ``.to(dtype=...)`` calls.
         """
         try:
-            return next(self.core.parameters()).dtype
+            return next(self.backend.parameters()).dtype
         except StopIteration:
             return torch.float32
+
+    # ------------------------------------------------------------------
+    # Backend invocation (compile-aware)
+    # ------------------------------------------------------------------
+
+    @contextlib.contextmanager
+    def _backend_ctx(self):
+        """Context for calling the backend building blocks.
+
+        When the backend methods have been ``torch.compile``-d
+        (``self._compiled``), the Dynamo flags required to capture the
+        data-dependent ``max_edges_per_node`` size must be active while the
+        compiled functions trace (lazily, on first call) — so the calls
+        themselves run inside the ``config.patch`` context, matching
+        ``metatrain/pet/tests/test_backend.py``. The benign non-leaf ``.grad``
+        warning Dynamo emits while building grad-tracking graph inputs (when
+        autograd forces / stress are active) is silenced. In eager mode this is
+        a no-op.
+        """
+        if self._compiled:
+            with (
+                torch._dynamo.config.patch(
+                    capture_scalar_outputs=True,
+                    capture_dynamic_output_shape_ops=True,
+                    specialize_int=True,
+                ),
+                _ignore_nonleaf_grad_warning(),
+            ):
+                yield
+        else:
+            yield
 
     # ------------------------------------------------------------------
     # Input preparation
     # ------------------------------------------------------------------
 
-    def _prepare_inputs(
-        self, data: Batch, dtype: torch.dtype
-    ) -> dict[str, torch.Tensor]:
-        """Build the feature dict consumed by :class:`_PETCore`.
-
-        Mirrors :func:`metatrain.pet.modules.structures.systems_to_batch`
-        but sources every input from :class:`~nvalchemi.data.Batch` fields
-        (``positions``, ``atomic_numbers``, ``neighbor_list``,
-        ``neighbor_list_shifts``, ``cell``, ``batch_idx``) instead of
-        ``metatomic.torch.System``.
-
-        Parameters
-        ----------
-        data : Batch
-            Input batch. ``positions`` is assumed to already be in *dtype*
-            (with ``requires_grad`` set by the caller when appropriate).
-        dtype : torch.dtype
-            Model dtype; used to cast ``cell`` and ``neighbor_list_shifts``.
-
-        Returns
-        -------
-        dict[str, torch.Tensor]
-            Keys consumed by :meth:`_PETCore._featurize`:
-            ``element_indices_nodes``, ``element_indices_neighbors``,
-            ``edge_vectors``, ``edge_distances``, ``padding_mask``,
-            ``reverse_neighbor_index``, ``cutoff_factors``.
-        """
-        from metatrain.pet.modules.adaptive_cutoff import get_adaptive_cutoffs
-        from metatrain.pet.modules.nef import (
-            compute_reversed_neighbor_list,
-            edge_array_to_nef,
-            get_corresponding_edges,
-            get_nef_indices,
-        )
-        from metatrain.pet.modules.utilities import (
-            cutoff_func_bump,
-            cutoff_func_cosine,
-        )
-
-        positions = data.positions
-        device = positions.device
-        N = int(positions.shape[0])
-        B = int(data.num_graphs)
-
-        centers = data.neighbor_list[:, 0].long()
-        neighbors = data.neighbor_list[:, 1].long()
-
-        # Integer PBC shifts [E, 3] — zero for non-PBC systems.
-        raw_shifts = getattr(data, "neighbor_list_shifts", None)
-        if raw_shifts is None:
-            cell_shifts = torch.zeros(
-                centers.shape[0], 3, dtype=torch.long, device=device
-            )
-        else:
-            cell_shifts = raw_shifts.to(dtype=torch.long, device=device)
-
-        # Cell [B, 3, 3] — identity for non-PBC systems.
-        raw_cell = getattr(data, "cell", None)
-        if raw_cell is None:
-            cell = (
-                torch.eye(3, dtype=dtype, device=device)
-                .unsqueeze(0)
-                .expand(B, -1, -1)
-                .contiguous()
-            )
-        else:
-            cell = raw_cell.to(dtype=dtype, device=device)
-
-        # Edge vectors with PBC contributions.
-        cell_shifts_typed = cell_shifts.to(dtype=dtype)
-        if B == 1:
-            # Matches the upstream fast path; avoids the einsum when it's
-            # not needed (slow backward for a single cell).
-            cell_contributions = cell_shifts_typed @ cell[0]
-        else:
-            batch_idx_per_edge = data.batch_idx[centers].long()
-            cell_contributions = torch.einsum(
-                "ab,abc->ac",
-                cell_shifts_typed,
-                cell[batch_idx_per_edge],
-            )
-        edge_vectors = positions[neighbors] - positions[centers] + cell_contributions
-        edge_distances = torch.norm(edge_vectors, dim=-1) + 1e-15
-
-        # Adaptive cutoffs (optional).
-        if self.core.num_neighbors_adaptive is not None:
-            atomic_cutoffs = get_adaptive_cutoffs(
-                centers,
-                edge_distances,
-                self.core.num_neighbors_adaptive,
-                N,
-                self.core.cutoff,
-                cutoff_width=self.core.cutoff_width,
-            )
-            pair_cutoffs = (atomic_cutoffs[centers] + atomic_cutoffs[neighbors]) / 2.0
-            cutoff_mask = edge_distances <= pair_cutoffs
-            pair_cutoffs = pair_cutoffs[cutoff_mask]
-            centers = centers[cutoff_mask]
-            neighbors = neighbors[cutoff_mask]
-            edge_vectors = edge_vectors[cutoff_mask]
-            cell_shifts = cell_shifts[cutoff_mask]
-            edge_distances = edge_distances[cutoff_mask]
-        else:
-            pair_cutoffs = self.core.cutoff * torch.ones(
-                centers.shape[0], device=device, dtype=dtype
-            )
-
-        num_neighbors = torch.bincount(centers, minlength=N)
-        max_edges_per_node = (
-            int(torch.max(num_neighbors)) if num_neighbors.numel() > 0 else 0
-        )
-
-        cutoff_function = self.core.cutoff_function.lower()
-        if cutoff_function == "bump":
-            cutoff_factors = cutoff_func_bump(
-                edge_distances, pair_cutoffs, self.core.cutoff_width
-            )
-        elif cutoff_function == "cosine":
-            cutoff_factors = cutoff_func_cosine(
-                edge_distances, pair_cutoffs, self.core.cutoff_width
-            )
-        else:
-            raise ValueError(
-                f"Unknown cutoff function type: {self.core.cutoff_function!r}. "
-                "Supported types are 'Cosine' and 'Bump'."
-            )
-
-        # NEF reshaping.
-        nef_indices, _, nef_mask = get_nef_indices(centers, N, max_edges_per_node)
-        atomic_numbers = data.atomic_numbers.long()
-        element_indices_nodes = self.core.species_to_species_index[atomic_numbers]
-        element_indices_neighbors_flat = element_indices_nodes[neighbors]
-
-        edge_vectors_nef = edge_array_to_nef(edge_vectors, nef_indices)
-        edge_distances_nef = torch.sqrt(torch.sum(edge_vectors_nef**2, dim=2) + 1e-15)
-        element_indices_neighbors = edge_array_to_nef(
-            element_indices_neighbors_flat, nef_indices
-        )
-        cutoff_factors_nef = edge_array_to_nef(
-            cutoff_factors, nef_indices, nef_mask, 0.0
-        )
-
-        corresponding_edges = get_corresponding_edges(
-            torch.cat(
-                [centers.unsqueeze(-1), neighbors.unsqueeze(-1), cell_shifts],
-                dim=-1,
-            )
-        )
-        reversed_neighbor_list = compute_reversed_neighbor_list(
-            nef_indices, corresponding_edges, nef_mask
-        )
-        neighbors_index = edge_array_to_nef(neighbors, nef_indices).to(torch.int64)
-        reverse_neighbor_index = (
-            neighbors_index * neighbors_index.shape[1] + reversed_neighbor_list
-        )
-        # Replace padded indices with a unique sequence — fixes a backward
-        # slowdown caused by duplicate gather indices (upstream comment
-        # references pytorch#41162).
-        num_padded = int(torch.sum(~nef_mask))
-        if num_padded > 0:
-            reverse_neighbor_index = reverse_neighbor_index.clone()
-            reverse_neighbor_index[~nef_mask] = torch.arange(num_padded, device=device)
-
-        return {
-            "element_indices_nodes": element_indices_nodes,
-            "element_indices_neighbors": element_indices_neighbors,
-            "edge_vectors": edge_vectors_nef,
-            "edge_distances": edge_distances_nef,
-            "padding_mask": nef_mask,
-            "reverse_neighbor_index": reverse_neighbor_index,
-            "cutoff_factors": cutoff_factors_nef,
-        }
-
     def adapt_input(
         self, data: AtomicData | Batch, **_kwargs: Any
     ) -> dict[str, torch.Tensor]:
-        """Build the input dict expected by :class:`_PETCore`.
+        """Translate a :class:`~nvalchemi.data.Batch` into backend input tensors.
+
+        Produces the concatenated, plain-tensor structure representation that
+        :meth:`PETBackend.preprocess` consumes — the nvalchemi analogue of
+        :func:`metatrain.pet.modules.structures.concatenate_structures`. All the
+        edge manipulation (NEF reshaping, adaptive cutoffs, reversed-neighbor
+        indexing) then happens inside the backend.
 
         Handles ``AtomicData -> Batch`` promotion and gradient enabling on
-        ``positions`` when an autograd output is active. Strain handling
-        (for stress) is done by :meth:`forward` **before** calling this
-        method, so that the scaled positions/cell flow through the full
-        featurisation.
+        ``positions`` when an autograd output is active. Strain handling (for
+        stress) is done by :meth:`forward` **before** calling this method, so
+        that the scaled positions/cell flow through the full featurisation.
 
         Parameters
         ----------
@@ -815,7 +466,9 @@ class PETWrapper(nn.Module, BaseModelMixin):
         Returns
         -------
         dict[str, torch.Tensor]
-            Input dict for :class:`_PETCore`.
+            Keyword arguments for :meth:`PETBackend.preprocess`:
+            ``positions``, ``centers``, ``neighbors``, ``species``, ``cells``,
+            ``cell_shifts``, ``system_indices``.
         """
         if isinstance(data, AtomicData):
             data = Batch.from_data_list([data])
@@ -832,7 +485,68 @@ class PETWrapper(nn.Module, BaseModelMixin):
         # autograd calls in `forward` can reach them via `data.positions`.
         data["positions"] = positions
 
-        return self._prepare_inputs(data, dtype)
+        return self._collect_backend_inputs(data, dtype)
+
+    def _collect_backend_inputs(
+        self, data: Batch, dtype: torch.dtype
+    ) -> dict[str, torch.Tensor]:
+        """Gather the :meth:`PETBackend.preprocess` kwargs from a prepared batch.
+
+        Reads ``data.positions`` as-is (the caller is responsible for any dtype
+        cast / gradient setup) and assembles the remaining structure tensors,
+        mirroring :func:`metatrain.pet.modules.structures.concatenate_structures`.
+
+        Parameters
+        ----------
+        data : Batch
+            Batch whose ``positions`` are already prepared.
+        dtype : torch.dtype
+            Model dtype, used to cast ``cells``.
+
+        Returns
+        -------
+        dict[str, torch.Tensor]
+            Keyword arguments for :meth:`PETBackend.preprocess`.
+        """
+        positions = data.positions
+        device = positions.device
+        num_graphs = int(data.num_graphs)
+
+        centers = data.neighbor_list[:, 0].long()
+        neighbors = data.neighbor_list[:, 1].long()
+        species = data.atomic_numbers.long()
+        system_indices = data.batch_idx.long()
+
+        # Integer PBC shifts [E, 3] — zero for non-PBC systems.
+        raw_shifts = getattr(data, "neighbor_list_shifts", None)
+        if raw_shifts is None:
+            cell_shifts = torch.zeros(
+                centers.shape[0], 3, dtype=torch.long, device=device
+            )
+        else:
+            cell_shifts = raw_shifts.to(dtype=torch.long, device=device)
+
+        # Cell [B, 3, 3] — identity for non-PBC systems.
+        raw_cell = getattr(data, "cell", None)
+        if raw_cell is None:
+            cells = (
+                torch.eye(3, dtype=dtype, device=device)
+                .unsqueeze(0)
+                .expand(num_graphs, -1, -1)
+                .contiguous()
+            )
+        else:
+            cells = raw_cell.to(dtype=dtype, device=device)
+
+        return {
+            "positions": positions,
+            "centers": centers,
+            "neighbors": neighbors,
+            "species": species,
+            "cells": cells,
+            "cell_shifts": cell_shifts,
+            "system_indices": system_indices,
+        }
 
     def adapt_output(
         self,
@@ -869,14 +583,19 @@ class PETWrapper(nn.Module, BaseModelMixin):
     # ------------------------------------------------------------------
 
     def forward(self, data: AtomicData | Batch, **kwargs: Any) -> ModelOutputs:
-        """Run the PET core and return energy / forces / stress.
+        """Run the PET backend and return energy / forces / stress.
 
-        Conservative forces are derived via
-        :func:`torch.autograd.grad` of the total energy with respect to
-        positions. Stresses use the affine-strain trick from
-        :func:`~nvalchemi.models._utils.prepare_strain` /
-        :func:`~nvalchemi.models._utils.autograd_stresses` (same pattern as
-        :class:`~nvalchemi.models.aimnet2.AIMNet2Wrapper`).
+        The energy comes from
+        :meth:`PETBackend.preprocess` ->
+        :meth:`PETBackend.calculate_features` ->
+        :meth:`PETBackend.predict` (the latter already sums the node and
+        cutoff-weighted edge contributions over all readout layers). The flat
+        scaler / composition buffers are then applied.
+
+        Conservative forces are derived via :func:`torch.autograd.grad` of the
+        total energy with respect to positions. Stresses use the affine-strain
+        trick from :func:`~nvalchemi.models._utils.prepare_strain` /
+        :func:`~nvalchemi.models._utils.autograd_stresses`.
 
         Parameters
         ----------
@@ -915,35 +634,69 @@ class PETWrapper(nn.Module, BaseModelMixin):
 
         inputs = self.adapt_input(data, **kwargs)
         positions = data.positions  # updated in-place by adapt_input
-        atomic_numbers = data.atomic_numbers.long()
-        species_idx = self.core.species_to_species_index[atomic_numbers]
 
-        node_pred, edge_pred = self.core(inputs)
-        # Scaler first, then composition (matches upstream PET.forward order).
-        per_atom = self.scale_energy * (node_pred + edge_pred)
+        with self._backend_ctx():
+            batch_data = self.backend.preprocess(
+                inputs["positions"],
+                inputs["centers"],
+                inputs["neighbors"],
+                inputs["species"],
+                inputs["cells"],
+                inputs["cell_shifts"],
+                inputs["system_indices"],
+            )
+            node_features_list, edge_features_list = self.backend.calculate_features(
+                batch_data
+            )
+            atomic_predictions, _, _ = self.backend.predict(
+                node_features_list,
+                edge_features_list,
+                batch_data,
+                inputs["cells"],
+                inputs["system_indices"],
+                ["energy"],
+            )
+
+        per_atom = atomic_predictions["energy"][0]  # [N, 1]
+        species_idx = self.backend.species_to_species_index[inputs["species"]]
+        # Scaler first, then composition (matches upstream PET ordering).
+        per_atom = self.scale_energy * per_atom
         per_atom = per_atom + self.composition_energy[species_idx].unsqueeze(-1)
 
-        B = int(data.num_graphs)
-        energy = torch.zeros(B, 1, dtype=per_atom.dtype, device=per_atom.device)
-        energy.scatter_add_(0, data.batch_idx.long().unsqueeze(-1), per_atom)
+        num_graphs = int(data.num_graphs)
+        energy = torch.zeros(
+            num_graphs, 1, dtype=per_atom.dtype, device=per_atom.device
+        )
+        energy.scatter_add_(0, inputs["system_indices"].unsqueeze(-1), per_atom)
 
         result: dict[str, torch.Tensor] = {"energy": energy}
 
-        if compute_forces:
-            (grad,) = torch.autograd.grad(
-                energy.sum(),
+        need_stress = (
+            compute_stresses and displacement is not None and orig_cell is not None
+        )
+        if compute_forces and need_stress:
+            # A single backward for both forces and stress. Two separate
+            # ``autograd.grad`` calls would run backward twice over the same
+            # graph, which clashes with ``torch.compile``'s donated-buffer
+            # optimization (it requires create_graph=retain_graph=False).
+            forces, stress = autograd_forces_and_stresses(
+                energy,
                 positions,
-                create_graph=False,
-                retain_graph=compute_stresses,
+                displacement,
+                orig_cell,
+                num_graphs,
             )
+            result["forces"] = forces
+            result["stress"] = stress
+        elif compute_forces:
+            (grad,) = torch.autograd.grad(energy.sum(), positions)
             result["forces"] = -grad
-
-        if compute_stresses and displacement is not None and orig_cell is not None:
+        elif need_stress:
             result["stress"] = autograd_stresses(
                 energy,
                 displacement,
                 orig_cell,
-                B,
+                num_graphs,
             )
 
         # Restore the batch's original positions/cell if strain was applied,
@@ -963,9 +716,18 @@ class PETWrapper(nn.Module, BaseModelMixin):
     ) -> AtomicData | Batch:
         """Compute node and graph embeddings without autograd.
 
-        Writes ``node_embeddings`` (``[N, d_node]``) and
-        ``graph_embeddings`` (``[B, d_node]``, sum-pooled over atoms) into
-        *data* and returns it. Does **not** mutate ``model_config``.
+        The node embedding is the concatenation of the per-layer node features
+        with the cutoff-weighted, neighbor-summed per-layer edge features —
+        matching ``metatrain.pet.model.PET._get_output_features``::
+
+            node = cat(node_features_list, dim=1)
+            edge = (cat(edge_features_list, dim=2) * cutoff_factors).sum(neighbors)
+            feats = cat([node, edge], dim=1)
+
+        Writes ``node_embeddings``
+        (``[N, num_readout_layers*(d_node+d_pet)]``) and ``graph_embeddings``
+        (``[B, ...]``, sum-pooled over atoms) into *data* and returns it. Does
+        **not** mutate ``model_config``.
 
         Parameters
         ----------
@@ -977,18 +739,37 @@ class PETWrapper(nn.Module, BaseModelMixin):
         Returns
         -------
         AtomicData | Batch
-            The same batch with ``node_embeddings`` and
-            ``graph_embeddings`` attached.
+            The same batch with ``node_embeddings`` and ``graph_embeddings``
+            attached.
         """
         if isinstance(data, AtomicData):
             data = Batch.from_data_list([data])
 
-        dtype = self._model_dtype
-
         with torch.no_grad():
-            data["positions"] = data.positions.to(dtype=dtype)
-            inputs = self._prepare_inputs(data, dtype)
-            node_feats = self.core.compute_node_feats(inputs)
+            # Build inputs without enabling gradients on positions (embeddings
+            # are autograd-free), so adapt_input's grad toggle is bypassed.
+            data["positions"] = data.positions.to(dtype=self._model_dtype)
+            inputs = self._collect_backend_inputs(data, self._model_dtype)
+            with self._backend_ctx():
+                batch_data = self.backend.preprocess(
+                    inputs["positions"],
+                    inputs["centers"],
+                    inputs["neighbors"],
+                    inputs["species"],
+                    inputs["cells"],
+                    inputs["cell_shifts"],
+                    inputs["system_indices"],
+                )
+                node_features_list, edge_features_list = (
+                    self.backend.calculate_features(batch_data)
+                )
+
+            node_features = torch.cat(node_features_list, dim=1)
+            edge_features = torch.cat(edge_features_list, dim=2)
+            edge_features = (
+                edge_features * batch_data["cutoff_factors"][:, :, None]
+            ).sum(dim=1)
+            node_feats = torch.cat([node_features, edge_features], dim=1)
 
         # Write node embeddings directly to the atoms group to avoid the
         # default "system" routing used by `setattr` on unknown keys.
@@ -1030,14 +811,18 @@ class PETWrapper(nn.Module, BaseModelMixin):
 
         Expects a ``torch.load``-friendly dict written by
         :class:`metatrain.pet.PET`. The outer dict is an LLPR wrapper; the
-        PET core lives in ``wrapped_model_checkpoint`` if that key is
-        present, otherwise directly at the top level.
+        PET core lives in ``wrapped_model_checkpoint`` if that key is present,
+        otherwise directly at the top level. The (possibly old) checkpoint is
+        brought to the current layout via
+        :meth:`metatrain.pet.PET.upgrade_checkpoint` before its hypers /
+        ``state_dict`` are read — old checkpoints (e.g. ``pet-mad-xs-v1.5.0``,
+        version 11) predate the ``backend.`` state-dict prefix.
 
         Metatomic's torch extension **must** be importable before
         :func:`torch.load` is called, otherwise the checkpoint's
         ``ScriptObject`` metadata fails to unpickle. We import
-        :mod:`metatomic.torch` lazily here to enforce that without
-        polluting module import time.
+        :mod:`metatomic.torch` lazily here to enforce that without polluting
+        module import time.
 
         Parameters
         ----------
@@ -1046,13 +831,30 @@ class PETWrapper(nn.Module, BaseModelMixin):
         device : torch.device, optional
             Target device. Defaults to CPU.
         dtype : torch.dtype | None, optional
-            If set, cast the core and composition/scaler buffers to this
+            If set, cast the backend and composition/scaler buffers to this
             dtype before returning.
         compile_model : bool, optional
-            Apply ``torch.compile``.  Sets eval mode and freezes parameters;
-            the model is **inference-only** after this step.
+            ``torch.compile`` the three backend building blocks
+            (``preprocess`` / ``calculate_features`` / ``predict``). Sets eval
+            mode and freezes parameters; the model is **inference-only** after
+            this step. Conservative forces and stress via autograd still work
+            through the compiled graph (the combined single-backward in
+            :meth:`forward` keeps it compatible with ``torch.compile``'s
+            donated-buffer optimization). Note that the backend's
+            data-dependent ``max_edges_per_node`` size requires
+            ``capture_scalar_outputs`` / ``capture_dynamic_output_shape_ops`` to
+            be set, which :meth:`forward` applies via ``torch._dynamo.config``
+            patching at call time (see :meth:`_backend_ctx`).
+
+            Models using the ``'grid'`` adaptive-cutoff method (pet-mad
+            <= v1.5.0) cannot be compiled at all — autograd backward through the
+            compiled grid cutoff aborts — so ``compile_model=True`` for such a
+            model raises ``ValueError``. Use a ``'solver'``-method checkpoint
+            (pet-mad >= v1.6.0) to compile, or run the grid model eagerly.
         **compile_kwargs
-            Forwarded to ``torch.compile``.
+            Forwarded verbatim to each ``torch.compile`` call, so the caller
+            chooses the compilation options (e.g. ``fullgraph=True``,
+            ``mode=...``, ``dynamic=...``).
 
         Returns
         -------
@@ -1062,21 +864,36 @@ class PETWrapper(nn.Module, BaseModelMixin):
         ------
         OptionalDependencyError
             When :mod:`metatrain` is not installed.
+        ValueError
+            When ``compile_model`` is requested for a ``'grid'`` adaptive-cutoff
+            model (see ``compile_model`` above).
         """
         if not OptionalDependency.PET.is_available():
             OptionalDependency.PET._raise_error(f"{cls.__qualname__}.from_checkpoint")
         # Make sure metatomic's custom torch ops are registered before
         # torch.load, otherwise the ScriptObject metadata unpickling fails.
         import metatomic.torch  # noqa: F401
+        from metatrain.pet import PET
 
         raw = torch.load(str(checkpoint_path), weights_only=False, map_location=device)
         if isinstance(raw, dict) and "wrapped_model_checkpoint" in raw:
             raw = raw["wrapped_model_checkpoint"]
 
+        # Bring an old checkpoint up to the current model version (adds the
+        # `backend.` prefix and any missing hypers). Mutates `raw` in place.
+        raw = PET.upgrade_checkpoint(raw)
+
         model_data = raw["model_data"]
         hypers = dict(model_data["model_hypers"])
         atomic_types = list(model_data["dataset_info"].atomic_types)
-        raw_sd = raw["model_state_dict"]
+        # Prefer the latest weights (``model_state_dict``); fall back to the best
+        # epoch (``best_model_state_dict``). Exported / best-only checkpoints
+        # (e.g. pet-mad-xs-v1.6.0) carry only the latter.
+        raw_sd = raw.get("model_state_dict") or raw.get("best_model_state_dict")
+        if raw_sd is None:
+            raise KeyError(
+                "Checkpoint has neither 'model_state_dict' nor 'best_model_state_dict'."
+            )
 
         composition_values = _decode_tensor_map_values(
             raw_sd["additive_models.0.energy_composition_buffer"]
@@ -1087,28 +904,57 @@ class PETWrapper(nn.Module, BaseModelMixin):
         )  # [1, 1]
         scale_energy = scale_values.reshape(()).clone()
 
-        core_sd = _filter_state_dict(raw_sd)
-        core = _PETCore(hypers, atomic_types)
-        core.load_state_dict(core_sd, strict=True)
-
-        if dtype is not None:
-            core = core.to(dtype=dtype)
-            composition_energy = composition_energy.to(dtype=dtype)
-            scale_energy = scale_energy.to(dtype=dtype)
-
+        backend_sd = _filter_state_dict(raw_sd)
         wrapper = cls(
-            core=core,
             atomic_types=atomic_types,
             hypers=hypers,
             composition_energy=composition_energy,
             scale_energy=scale_energy,
-        ).to(device)
+        )
+        wrapper.backend.load_state_dict(backend_sd, strict=True)
+
+        if dtype is not None:
+            wrapper.backend = wrapper.backend.to(dtype=dtype)
+            wrapper.composition_energy = wrapper.composition_energy.to(dtype=dtype)
+            wrapper.scale_energy = wrapper.scale_energy.to(dtype=dtype)
+
+        wrapper = wrapper.to(device)
 
         if compile_model:
             wrapper.eval()
             for param in wrapper.parameters():
                 param.requires_grad = False
-            wrapper = torch.compile(wrapper, **compile_kwargs)
+            # The 'grid' adaptive-cutoff method (what pet-mad <= v1.5.0 was
+            # trained with) cannot be safely compiled: autograd backward through
+            # the compiled grid cutoff aborts at the C++ level (with
+            # ``fullgraph=True`` always, and intermittently even without it).
+            # The 'solver' method (pet-mad >= v1.6.0) is fully compatible,
+            # including ``fullgraph=True``. Refuse to compile a grid model so the
+            # user gets a clear error instead of a hard crash at the first
+            # backward.
+            uses_grid_adaptive = (
+                wrapper.backend.num_neighbors_adaptive is not None
+                and str(wrapper.backend.adaptive_cutoff_method).lower() == "grid"
+            )
+            if uses_grid_adaptive:
+                raise ValueError(
+                    "compile_model=True is not supported for PET models using "
+                    "the 'grid' adaptive-cutoff method (e.g. pet-mad-xs "
+                    "<= v1.5.0): autograd backward through the compiled grid "
+                    "cutoff aborts. Load a checkpoint trained with the 'solver' "
+                    "method (e.g. pet-mad-xs >= v1.6.0) to use torch.compile, or "
+                    "run the grid model in eager mode (compile_model=False)."
+                )
+            wrapper.backend.preprocess = torch.compile(
+                wrapper.backend.preprocess, **compile_kwargs
+            )
+            wrapper.backend.calculate_features = torch.compile(
+                wrapper.backend.calculate_features, **compile_kwargs
+            )
+            wrapper.backend.predict = torch.compile(
+                wrapper.backend.predict, **compile_kwargs
+            )
+            wrapper._compiled = True
         return wrapper
 
     # ------------------------------------------------------------------
@@ -1118,26 +964,26 @@ class PETWrapper(nn.Module, BaseModelMixin):
     def export_model(self, path: Path, as_state_dict: bool = False) -> None:
         """Serialize the wrapper to disk in a pure-torch layout.
 
-        Writes a plain dict containing the core ``state_dict``, the
-        hyper-parameters, the atomic-type list, and the
-        composition/scaler buffers. The output is **not** a metatrain /
-        metatomic checkpoint — it is a self-contained snapshot that can
-        be reloaded by constructing ``_PETCore(hypers, atomic_types)`` and
-        calling ``load_state_dict`` on the saved dict.
+        Writes a plain dict containing the backend ``state_dict``, the
+        hyper-parameters, the atomic-type list, and the composition/scaler
+        buffers. The output is **not** a metatrain / metatomic checkpoint — it
+        is a self-contained snapshot that can be reloaded by constructing
+        ``PETWrapper(atomic_types, hypers, ...)`` and calling
+        ``load_state_dict`` on its backend.
 
         Parameters
         ----------
         path : Path
             Output path.
         as_state_dict : bool, optional
-            If ``True``, save only the core's ``state_dict``. Defaults to
+            If ``True``, save only the backend's ``state_dict``. Defaults to
             ``False`` (saves the full snapshot).
         """
         if as_state_dict:
-            torch.save(self.core.state_dict(), path)
+            torch.save(self.backend.state_dict(), path)
         else:
             snapshot = {
-                "core_state_dict": self.core.state_dict(),
+                "backend_state_dict": self.backend.state_dict(),
                 "hypers": self.hypers,
                 "atomic_types": self.atomic_types,
                 "composition_energy": self.composition_energy.detach().cpu(),
